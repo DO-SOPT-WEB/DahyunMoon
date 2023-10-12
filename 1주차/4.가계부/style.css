@@ -1,0 +1,140 @@
+body {
+    border: 0;
+}
+
+header {
+    width: 100%;
+    height: 50px;
+    line-height: 50px; /*글씨가 세로 기준 가운데에 오게*/
+    text-align: center; /*글씨가 가로 기준 가운데에 오게*/
+    font-size: 25px;
+    font-weight: bold;
+    background-color:  bisque;
+}
+
+.my-account {
+    height: 150px;
+    display: flex;
+    align-items: center;
+}
+
+.my-account .inner {
+    height: 110px;
+    width: 80%;
+    margin: 0 auto; /*박스 가로 중앙정렬 */
+    background-color:  bisque;
+    border-radius: 30px;
+    text-align : center; /*글씨 가운데 정렬*/
+    border: 5px solid salmon;
+    padding:5px;
+
+}
+
+.inner-1 {
+    margin-top: 3px;
+    line-height: 30px;
+    font-size:15px;
+    font-weight: bold;
+}
+
+.inner-2 {
+    line-height: 60px;
+    font-size: 30px;
+    font-weight: bold;
+}
+
+.inner-3 {
+    display: flex;
+    justify-content: space-around;
+}
+
+.list-header-1 {
+    height: 35px;
+    line-height: 35px;
+    font-size: 18px;
+    font-weight: bold;
+    text-align: center;
+}
+
+.list-header-2 {
+    display: flex;
+    margin: 0 15px ;
+    height: 35px;
+    line-height: 35px;
+}
+
+.list-header-2 .title {
+    width:60%;
+    font-weight: bold;
+}
+
+.list-header-2 .button {
+    width:20%;
+    border-radius: 5px;
+    color:white;
+    background-color: salmon;
+    margin: 0 5px;
+    text-align: center;
+}
+
+.list-real {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 300px;
+    padding: 10px 0;
+    overflow-y: scroll;
+}
+
+.list-add {
+    height: 50px;
+}
+
+.list-indiv {
+    display: flex;
+    align-items: center;
+    flex-shrink: 0; /*크기 자동조정 안되게 */
+    width: 300px;
+    height: 50px;
+    background-color: bisque;
+    border: 1px solid salmon;
+    border-radius: 15px;
+    margin: 10px 0;
+    padding: 0 3%;
+}
+
+.list-indiv .one {
+    font-size: 13px;
+    width: 10%;
+}
+.list-indiv .two {
+    width: 55%;
+    padding-left: 5%;
+    font-weight: bold;
+}
+.list-indiv .three {
+    font-size: 14px;
+    width: 25%;
+    color:blue;
+}
+
+.x {
+    align-self: flex-start;
+    
+}
+
+.list-add {
+    display:flex;
+    justify-content: center;
+    background-color: gainsboro;
+}
+
+.list-add .button {
+    height: 100%;
+    line-height: 50px;
+    width:20%;
+    border-radius: 20px;
+    font-size: 40px;
+    text-align: center;
+    background-color: salmon;
+}
