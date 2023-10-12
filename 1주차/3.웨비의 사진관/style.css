@@ -1,15 +1,15 @@
-html,body {
-    height: 100%;
-    border : 1px solid black;
+body {
     font-weight: bold;
 }
 
+a {
+    text-decoration-line: none;
+}
 
 .header {
     display: flex;
     align-items: center;
     background-color: mediumaquamarine;
-    border: 1px solid red;
     height: 40px;
     position: sticky;
     top: 0; /* 화면 상단에 고정 */
@@ -20,7 +20,6 @@ html,body {
 .img-preview {
     display: flex;
     overflow-x: auto; /*가로 스크롤바*/
-    border: 1px solid orange;
     height: 450px;
     align-items: center;
 }
@@ -30,7 +29,6 @@ html,body {
     height: 400px;
     margin-left: 5px;
     margin-right: 5px;
-    border: 1px solid green;
 }
 
 .nav {
@@ -38,14 +36,12 @@ html,body {
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    border: 1px solid purple;
     height: 100px;
 }
 
 .img-france {
     display: flex;
     flex-wrap: wrap;
-    border: 1px solid orange;
     height: 450px;
     align-items: center;
     justify-content: space-around;
@@ -53,15 +49,13 @@ html,body {
 
 .img-france img {
     width: 17%;
-    height: 45%;
+    height: 47%;
     margin-left: 5px;
     margin-right: 5px;
-    border: 1px solid green;
 }
 
 .img-portugal {
     display: flex;
-    border: 1px solid orange;
     height: 450px;
     margin: 0 auto;
     justify-content: center;
@@ -71,67 +65,78 @@ html,body {
 .img-portugal-main {
     width:350px;
     height: 450px;
-    border: 1px solid green;
-    margin-left: 20px;
+    margin-left: 10px;
 }
 
 .img-portugal-main img {
-    width: 95%; /* 이미지가 부모의 100% 가로 너비를 사용하도록 설정 */
-    height: 95%; /* 이미지의 세로 비율을 유지하도록 설정 */
+    width: 100%; /* 이미지가 부모의 100% 가로 너비를 사용하도록 설정 */
+    height: 100%; /* 이미지의 세로 비율을 유지하도록 설정 */
     margin-top: 10px;
 
 }
 
 .img-portugal-sub {
+    margin-top: 10px;
     display: flex;
     flex-wrap: wrap;
     width: 400px;
-    margin-left: 20px;
-    border: 1px solid green;
 }
 
 .img-portugal-sub img {
-    width: 40%; /* 이미지가 부모의 100% 가로 너비를 사용하도록 설정 */
-    height: 45%; /* 이미지의 세로 비율을 유지하도록 설정 */
-    margin-left: 10px;
-    margin-top: 10px;
-}
-
-
-
-
-.ex {
-    border: 1px solid salmon;
+    width: 45%; /* 이미지가 부모의 100% 가로 너비를 사용하도록 설정 */
+    height: 47%; /* 이미지의 세로 비율을 유지하도록 설정 */
+    margin: 0 auto;
+    align-items: center; /*세로 중앙 정렬*/
 }
 
 .img-spain  {
     display: flex;
     flex-direction: column;
-    height: 450px;
+    height: 700px;
    
   }
   
   .top-row {
     display: grid;
     grid-template-columns: 1fr 1fr; /* 윗줄의 왼쪽과 오른쪽 부분을 1:2 비율로 */
-    border: 1px solid salmon;
     height: 50%;
   }
 
   .top-row img {
     width: 100%;
+    height: 100%;
+
+  }
+
+  .top-left {
+    display: flex;
+    flex-direction:column;
+    overflow:hidden; /*사이즈 벗어나면 잘리게*/
+  }
+
+  .top-left img {
+    width:100%;
+    height:50%;
 
   }
   
   .bottom-row {
     display: grid;
     grid-template-columns: 7fr 3fr; /* 밑줄의 왼쪽과 오른쪽 부분을 7:3 비율로 */
-    border: 1px solid salmon;
     height: 50%;
+    overflow:hidden;
   }
   
   .bottom-row img {
     width: 100%;
     height: 100%;
   }
+
+  footer{
+    align-items: center;
+    background-color: mediumaquamarine;
+    height: 40px;
+    line-height: 40px;
+
+}
   
