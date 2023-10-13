@@ -6,6 +6,8 @@ a {
     text-decoration-line: none;
 }
 
+a:hover { color:mediumaquamarine; }
+
 .header1 {
     display: flex;
     align-items: center;
