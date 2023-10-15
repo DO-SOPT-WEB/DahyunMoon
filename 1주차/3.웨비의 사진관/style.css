@@ -41,6 +41,7 @@ a:hover { color:mediumaquamarine; text-decoration-line: underline; }
     margin-right: 5px;
 }
 
+
 .nav {
     display: flex;
     justify-content: center;
@@ -57,12 +58,47 @@ a:hover { color:mediumaquamarine; text-decoration-line: underline; }
     justify-content: space-around;
 }
 
-.img-france img {
+.img-france div {
+    position: relative;
     width: 17%;
     height: 47%;
     margin-left: 5px;
     margin-right: 5px;
+    overflow:hidden;
 }
+
+.img-france div img {
+    width: 100%;
+    height: 100%;
+
+}
+
+.img-france {
+    display: flex;
+    flex-wrap: wrap;
+    height: 450px;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.img-france div:hover img {
+    filter: brightness(0.3);
+}
+
+.hover_text {
+    position: absolute; 
+    top:40%;
+    left:30%;
+    color: white;
+    display: none; 
+    text-align: center;
+}
+
+.img-france div:hover .hover_text {
+    display: block;
+}
+
+
 
 .img-portugal {
     display: flex;
@@ -155,5 +191,6 @@ a:hover { color:mediumaquamarine; text-decoration-line: underline; }
     bottom:5px;
     right:15px;
     font-size: 40px;
+    opacity: 20; /* 초기에는 숨김 */
 }
   
