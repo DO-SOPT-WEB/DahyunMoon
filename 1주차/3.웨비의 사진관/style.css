@@ -6,7 +6,10 @@ a {
     text-decoration-line: none;
 }
 
-a:hover { color:mediumaquamarine; text-decoration-line: underline; }
+a:hover { 
+    color:mediumaquamarine;
+    text-decoration-line: underline;
+ }
 
 .header1 {
     display: flex;
