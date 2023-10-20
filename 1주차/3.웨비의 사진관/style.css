@@ -11,20 +11,28 @@ a:hover {
   text-decoration-line: underline;
 }
 
-.header1 {
-  display: flex;
-  align-items: center;
-  padding-left: 20px;
-  background-color: mediumaquamarine;
-  height: 40px;
+ul {
+  list-style: none;
 }
 
-.header {
+li {
+  float: left;
+}
+
+.main-title {
   display: flex;
   align-items: center;
-  padding-left: 20px;
+  padding-left: 1rem;
   background-color: mediumaquamarine;
-  height: 40px;
+  height: 3rem;
+}
+
+.country {
+  display: flex;
+  align-items: center;
+  padding-left: 1rem;
+  background-color: mediumaquamarine;
+  height: 3rem;
   position: sticky;
   top: 0; /* 화면 상단에 고정 */
 }
@@ -32,15 +40,15 @@ a:hover {
 .img-preview {
   display: flex;
   overflow-x: auto; /*가로 스크롤바*/
-  height: 450px;
+  height: 28rem;
   align-items: center;
 }
 
 .img-preview img {
-  width: 300px;
-  height: 400px;
-  margin-left: 5px;
-  margin-right: 5px;
+  width: 20rem;
+  height: 25rem;
+  margin-left: 0.5rem;
+  margin-right: 0.5rem;
 }
 
 .nav {
@@ -48,13 +56,13 @@ a:hover {
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  height: 100px;
+  height: 7rem;
 }
 
 .img-france {
   display: flex;
   flex-wrap: wrap;
-  height: 450px;
+  height: 30rem;
   align-items: center;
   justify-content: space-around;
 }
@@ -62,39 +70,40 @@ a:hover {
 .img-france img {
   width: 17%;
   height: 47%;
-  margin-left: 5px;
-  margin-right: 5px;
+  margin-left: 0.5rem;
+  margin-right: 0.5rem;
 }
 
 .img-portugal {
   display: flex;
-  height: 450px;
+  height: 30rem;
   margin: 0 auto;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
   justify-content: center;
 }
 
 .img-portugal-main {
-  width: 350px;
-  height: 450px;
-  margin-left: 10px;
+  width: 20rem;
+  margin-left: 1rem;
 }
 
 .img-portugal-main img {
   width: 100%; /* 이미지가 부모의 100% 가로 너비를 사용하도록 설정 */
   height: 100%; /* 이미지의 세로 비율을 유지하도록 설정 */
-  margin-top: 10px;
 }
 
 .img-portugal-sub {
-  margin-top: 10px;
   display: flex;
   flex-wrap: wrap;
-  width: 400px;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 25rem;
 }
 
 .img-portugal-sub img {
   width: 45%; /* 이미지가 부모의 100% 가로 너비를 사용하도록 설정 */
-  height: 47%; /* 이미지의 세로 비율을 유지하도록 설정 */
+  height: 48%; /* 이미지의 세로 비율을 유지하도록 설정 */
   margin: 0 auto;
   align-items: center; /*세로 중앙 정렬*/
 }
@@ -142,17 +151,17 @@ a:hover {
 footer {
   align-items: center;
   background-color: mediumaquamarine;
-  height: 40px;
-  line-height: 40px;
+  height: 3rem;
+  line-height: 3rem;
 }
 
 .top-button {
   position: fixed;
-  bottom: 5px;
-  right: 15px;
-  font-size: 40px;
+  bottom: 0.3rem;
+  right: 1rem;
+  font-size: 2.5rem;
 }
 
 footer {
-  padding-left: 20px;
+  padding-left: 1rem;
 }
