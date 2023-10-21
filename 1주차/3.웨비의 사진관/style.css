@@ -1,196 +1,228 @@
+html {
+  scroll-behavior: smooth;
+}
+
 body {
-    font-weight: bold;
+  font-weight: bold;
+  background-color: #ecffdc;
 }
 
 a {
-    text-decoration-line: none;
+  text-decoration-line: none;
 }
 
-a:hover { color:mediumaquamarine; text-decoration-line: underline; }
-
-.header1 {
-    display: flex;
-    align-items: center;
-    background-color: mediumaquamarine;
-    height: 40px;
-
+a:hover {
+  color: mediumaquamarine;
+  text-decoration-line: underline;
 }
 
-.header {
-    display: flex;
-    align-items: center;
-    background-color: mediumaquamarine;
-    height: 40px;
-    position: sticky;
-    top: 0; /* 화면 상단에 고정 */
-
+ul {
+  display: flex;
+  justify-content: center;
+  padding-left: 0;
+  list-style: none;
 }
 
+li {
+  padding: 0 0.5rem;
+}
+
+.main-title {
+  display: flex;
+  align-items: center;
+  padding-left: 1rem;
+  background-color: mediumaquamarine;
+  height: 3rem;
+}
+
+.country {
+  display: flex;
+  align-items: center;
+  padding-left: 1rem;
+  background-color: mediumaquamarine;
+  height: 3rem;
+  position: sticky;
+  top: 0; /* 화면 상단에 고정 */
+}
 
 .img-preview {
-    display: flex;
-    overflow-x: auto; /*가로 스크롤바*/
-    height: 450px;
-    align-items: center;
+  display: flex;
+  overflow-x: auto; /*가로 스크롤바*/
+  height: 28rem;
+  align-items: center;
+}
+
+::-webkit-scrollbar {
+  width: 1rem;
+}
+
+.img-preview::-webkit-scrollbar-thumb {
+  background-color: mediumaquamarine;
+  border-radius: 3rem;
 }
 
 .img-preview img {
-    width: 300px;
-    height: 400px;
-    margin-left: 5px;
-    margin-right: 5px;
+  width: 20rem;
+  height: 25rem;
+  margin-left: 0.5rem;
+  margin-right: 0.5rem;
 }
-
 
 .nav {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    height: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  height: 7rem;
 }
 
 .img-france {
-    display: flex;
-    flex-wrap: wrap;
-    height: 450px;
-    align-items: center;
-    justify-content: space-around;
+  display: flex;
+  flex-wrap: wrap;
+  padding: 1rem 3.5rem;
+  gap: 1rem;
+  height: auto;
+  align-items: center;
+  justify-content: center;
+}
+.each {
+  position: relative; /*필요 */
+  width: 14rem;
+  height: 14rem;
+  flex-grow: 1;
+  text-align: center;
+  object-fit: cover;
 }
 
-.img-france div {
-    position: relative;
-    width: 17%;
-    height: 47%;
-    margin-left: 5px;
-    margin-right: 5px;
-    overflow:hidden;
+.img-france img {
+  width: 14rem;
+  height: 14rem;
+  flex-grow: 1;
+  object-fit: cover;
 }
 
-.img-france div img {
-    width: 100%;
-    height: 100%;
-
+.hover-text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 100%;
+  transform: translate(-50%, -50%); /* 텍스트를 가운데로 이동 */
+  color: #ffffff;
 }
 
-.img-france {
-    display: flex;
-    flex-wrap: wrap;
-    height: 450px;
-    align-items: center;
-    justify-content: space-around;
+.img-france .each:hover,
+.img-portugal-main img:hover,
+.img-portugal-sub img:hover {
+  transition: all 0.3s;
+  transform: translateY(-0.5rem);
+  filter: brightness(50%);
 }
-
-.img-france div:hover img {
-    filter: brightness(0.3);
-}
-
-.hover_text {
-    position: absolute; 
-    top:40%;
-    left:30%;
-    color: white;
-    display: none; 
-    text-align: center;
-}
-
-.img-france div:hover .hover_text {
-    display: block;
-}
-
-
 
 .img-portugal {
-    display: flex;
-    height: 450px;
-    margin: 0 auto;
-    justify-content: center;
-
+  display: flex;
+  flex-wrap: wrap;
+  flex-grow: 1;
+  text-align: center;
+  justify-content: center;
+  padding: 1rem 15rem;
+  gap: 0.5rem;
+  margin: 1rem auto;
 }
 
 .img-portugal-main {
-    width:350px;
-    height: 450px;
-    margin-left: 10px;
+  display: flex;
+  flex-wrap: wrap;
+  width: 29rem;
+  height: 41rem;
+  flex-grow: 1;
 }
 
 .img-portugal-main img {
-    width: 100%; /* 이미지가 부모의 100% 가로 너비를 사용하도록 설정 */
-    height: 100%; /* 이미지의 세로 비율을 유지하도록 설정 */
-    margin-top: 10px;
-
+  width: 29rem; /* 이미지가 부모의 100% 가로 너비를 사용하도록 설정 */
+  height: 41rem; /* 이미지의 세로 비율을 유지하도록 설정 */
+  flex-grow: 1;
+  object-fit: cover;
 }
 
 .img-portugal-sub {
-    margin-top: 10px;
-    display: flex;
-    flex-wrap: wrap;
-    width: 400px;
+  display: flex;
+  flex-wrap: wrap;
+  flex-grow: 1;
+  gap: 0.5rem;
+  justify-content: center;
+  width: 25rem;
+  padding-bottom: 0;
+}
+
+.img-portugal-sub div {
+  width: 12rem; /* 이미지가 부모의 100% 가로 너비를 사용하도록 설정 */
+  height: 20rem;
+  flex-grow: 1;
+  margin: 0 auto;
+  align-items: center; /*세로 중앙 정렬*/
 }
 
 .img-portugal-sub img {
-    width: 45%; /* 이미지가 부모의 100% 가로 너비를 사용하도록 설정 */
-    height: 47%; /* 이미지의 세로 비율을 유지하도록 설정 */
-    margin: 0 auto;
-    align-items: center; /*세로 중앙 정렬*/
+  width: 100%;
+  height: 100%;
+  flex-grow: 1;
+  object-fit: cover;
 }
 
-.img-spain  {
-    display: flex;
-    flex-direction: column;
-    height: 700px;
-   
-  }
-  
-  .top-row {
-    display: grid;
-    grid-template-columns: 1fr 1fr; /* 윗줄의 왼쪽과 오른쪽 부분을 1:2 비율로 */
-    height: 50%;
-  }
+.img-spain {
+  display: grid;
+  padding: 1rem 4rem;
+  grid-template-columns: repeat(6, 1fr);
+  grid-template-rows: repeat(4, 1fr);
+  grid-gap: 0.5rem;
+  grid-template-areas:
+    "a a a b b b"
+    "c c c b b b"
+    "d d d d e e"
+    "d d d d e e";
+  height: 44rem;
+}
 
-  .top-row img {
-    width: 100%;
-    height: 100%;
+.img-spain img {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
 
-  }
+.pic-a {
+  grid-area: a;
+}
 
-  .top-left {
-    display: flex;
-    flex-direction:column;
-    overflow:hidden; /*사이즈 벗어나면 잘리게*/
-  }
+.pic-b {
+  grid-area: b;
+}
 
-  .top-left img {
-    width:100%;
-    height:50%;
+.pic-c {
+  grid-area: c;
+}
 
-  }
-  
-  .bottom-row {
-    display: grid;
-    grid-template-columns: 7fr 3fr; /* 밑줄의 왼쪽과 오른쪽 부분을 7:3 비율로 */
-    height: 50%;
-    overflow:hidden;
-  }
-  
-  .bottom-row img {
-    width: 100%;
-    height: 100%;
-  }
+.pic-d {
+  grid-area: d;
+}
 
-  footer {
-    align-items: center;
-    background-color: mediumaquamarine;
-    height: 40px;
-    line-height: 40px;
+.pic-e {
+  grid-area: e;
+}
 
+footer {
+  align-items: center;
+  background-color: mediumaquamarine;
+  height: 3rem;
+  line-height: 3rem;
 }
 
 .top-button {
-    position:fixed;
-    bottom:5px;
-    right:15px;
-    font-size: 40px;
-    opacity: 20; /* 초기에는 숨김 */
+  position: fixed;
+  bottom: 0.3rem;
+  right: 1rem;
+  font-size: 2.5rem;
 }
-  
+
+footer {
+  padding-left: 1rem;
+}
