@@ -83,6 +83,7 @@ li {
   gap: 1rem;
   height: auto;
   align-items: center;
+  flex-grow: 1;
   justify-content: center;
 }
 .each {
@@ -95,9 +96,8 @@ li {
 }
 
 .img-france img {
-  width: 14rem;
-  height: 14rem;
-  flex-grow: 1;
+  width: 100%;
+  height: 100%;
   object-fit: cover;
 }
 
