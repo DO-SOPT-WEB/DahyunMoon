@@ -110,6 +110,16 @@ li {
   color: #ffffff;
 }
 
+.hover-text p {
+  overflow: hidden;
+  white-space: normal;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  word-break: keep-all;
+}
+
 .img-france .each:hover,
 .img-portugal-main img:hover,
 .img-portugal-sub img:hover {
@@ -221,6 +231,11 @@ footer {
   bottom: 0.3rem;
   right: 1rem;
   font-size: 2.5rem;
+}
+
+.more-button {
+  border: 1px solid black;
+  cursor: pointer;
 }
 
 footer {

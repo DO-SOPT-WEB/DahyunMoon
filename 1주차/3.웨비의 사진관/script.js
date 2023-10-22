@@ -9,7 +9,7 @@ window.addEventListener("scroll", () => {
 
 // Top 버튼을 클릭할 때 페이지 상단으로 스크롤합니다.
 topButton.addEventListener("click", () => {
-  window.scrollTo({ top: 0, behavior: "smooth" }); // 부드러운 스크롤
+  window.scrollTo({ top: 0, behavior: "smooth" });
 });
 
 const allEachElements = document.querySelectorAll(".each");
@@ -17,13 +17,38 @@ const allEachElements = document.querySelectorAll(".each");
 allEachElements.forEach((each) => {
   const hoverText = each.querySelector(".hover-text");
 
-  hoverText.style.opacity = "0"; // 초기에 텍스트 숨김 (투명도를 0으로 설정)
-
+  hoverText.style.opacity = "0";
   each.addEventListener("mouseenter", () => {
-    hoverText.style.opacity = "1"; // 마우스가 진입하면 텍스트를 나타냄 (투명도를 1로 설정)
+    hoverText.style.opacity = "1";
   });
 
   each.addEventListener("mouseleave", () => {
-    hoverText.style.opacity = "0"; // 마우스가 떠나면 텍스트를 숨김 (투명도를 0으로 설정)
+    hoverText.style.opacity = "0";
+  });
+});
+//each안에 호버
+//호버안에 더보기
+
+// 선택자를 사용하여 모든 더보기 버튼을 가져옵니다.
+const moreButtons = document.querySelectorAll(".more-button");
+
+// 모든 더보기 버튼에 대한 이벤트 핸들러를 등록합니다.
+moreButtons.forEach((moreButton) => {
+  moreButton.addEventListener("click", function () {
+    // 현재 클릭된 더보기 버튼의 부모 요소를 찾습니다.
+    const parent = this.parentElement;
+
+    // 부모 요소에서 해당 p 요소를 찾습니다.
+    const textElement = parent.querySelector("p:nth-child(2)");
+
+    // 말줄임표를 제거하고 전체 텍스트를 표시합니다.
+    textElement.style.overflow = "initial";
+    textElement.style.whiteSpace = "initial";
+    textElement.style.textOverflow = "initial";
+    textElement.style.webkitLineClamp = "initial";
+    textElement.style.wordBreak = "initial";
+
+    // 더보기 버튼을 숨깁니다.
+    this.style.display = "none";
   });
 });
