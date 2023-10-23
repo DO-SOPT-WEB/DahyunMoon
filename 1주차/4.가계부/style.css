@@ -36,7 +36,7 @@ header {
   font-weight: bold;
 }
 
-.inner-2 {
+.total {
   line-height: 60px;
   font-size: 30px;
   font-weight: bold;
@@ -45,6 +45,14 @@ header {
 .inner-3 {
   display: flex;
   justify-content: space-around;
+}
+
+.income {
+  color: red;
+}
+
+.outcome {
+  color: blue;
 }
 
 .list-header-1 {
