@@ -14,6 +14,12 @@ const outcomeButton = document.querySelector(
 );
 
 const initial_list = document.querySelector(".list-real");
+const addModal = document.querySelector(".add_modal");
+
+const addButton = document.querySelector(".add_list");
+addButton.addEventListener("click", function () {
+  // addModal.style.transform = "translateY(-200%)";
+});
 
 function filter_history() {
   const show_income = incomeButton.checked;
