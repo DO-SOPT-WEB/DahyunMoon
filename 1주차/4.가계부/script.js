@@ -37,6 +37,7 @@ function filter_item(show_income, show_outcome) {
 
 incomeButton.addEventListener("change", filter_history);
 outcomeButton.addEventListener("change", filter_history);
+let total_money = null;
 
 function show_list(history_list) {
   initial_list.innerHTML = ""; // 이전 내역 지우기
@@ -77,9 +78,13 @@ function show_list(history_list) {
     ul.appendChild(content_li);
     ul.appendChild(price_li);
   });
-  total.textContent = `${total_income - total_outcome}원`;
-  income.textContent = `+${total_income}`;
-  outcome.textContent = `${total_outcome}`;
+  if (!total_money) {
+    //필터링에 따라 값 바뀜 방지
+    total_money = total_income - total_outcome;
+    total.textContent = `${total_money}원`;
+    income.textContent = `+${total_income}`;
+    outcome.textContent = `${total_outcome}`;
+  }
 }
 
 filter_history();
