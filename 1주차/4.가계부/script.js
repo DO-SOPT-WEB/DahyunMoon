@@ -31,18 +31,12 @@ const NoCancel = document.querySelector(".cancel_no");
 // });
 
 newPrice.addEventListener("input", function () {
-  // 현재 입력 값을 가져옴
   let inputValue = newPrice.value;
-
-  // 숫자에서 쉼표를 제거
   inputValue = inputValue.replace(/,/g, "");
 
-  // 숫자가 유효한지 확인
   if (!isNaN(inputValue)) {
-    // 숫자를 다시 포맷팅
     newPrice.value = formatWithCommas(inputValue);
   } else {
-    // 유효하지 않은 숫자인 경우 입력 필드를 비움
     newPrice.value = "";
   }
 });
@@ -98,15 +92,23 @@ const addModal = document.querySelector(".add_modal");
 let transactions = [];
 let transaction = { category: "", content: "", price: null };
 transactions.push(transaction);
+
+const modalBackground = document.createElement("div");
+modalBackground.classList.add("modal-background");
+
 const addButton = document.querySelector(".add_list");
 addButton.addEventListener("click", function () {
   addModal.style.transform = "translateY(-85%)";
   addModal.style.display = "block";
+  modalBackground.style.display = "block";
+  document.body.appendChild(modalBackground);
 });
+
 const closeButton = document.querySelector(".closeModal");
 closeButton.addEventListener("click", function () {
   addModal.style.transform = "translateY(15%)";
   addModal.style.display = "block";
+  modalBackground.style.display = "none";
 });
 const incomeModalButton = document.querySelector(".incomeModalButton");
 const outcomeModalButton = document.querySelector(".outcomeModalButton");
