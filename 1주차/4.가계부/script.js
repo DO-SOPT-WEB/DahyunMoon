@@ -37,6 +37,9 @@ function filter_item(show_income, show_outcome) {
 
 incomeButton.addEventListener("change", filter_history);
 outcomeButton.addEventListener("change", filter_history);
+
+let total_income = 0;
+let total_outcome = 0;
 let total_money = null;
 
 function show_list(history_list) {
@@ -46,10 +49,28 @@ function show_list(history_list) {
   const outcome = document.querySelector(".outcome");
   const total = document.querySelector(".total");
 
-  let total_income = 0;
-  let total_outcome = 0;
-
   history_list.forEach((item) => {
+    const cancelButton = document.createElement("button");
+    cancelButton.classList.add("x");
+    cancelButton.textContent = "x";
+    cancelButton.addEventListener("click", function () {
+      const listItem = this.parentNode;
+      console.log(listItem);
+      listItem.remove();
+      const removeItem = history_list.find((x) => x.content == item.content);
+      console.log(removeItem);
+      if (removeItem.price > 0) {
+        total_income -= removeItem.price;
+      }
+      if (removeItem.price < 0) {
+        total_outcome -= removeItem.price;
+      }
+
+      total_money = total_income - total_outcome;
+      total.textContent = `${total_money}원`;
+      income.textContent = `+${total_income}`;
+      outcome.textContent = `${total_outcome}`;
+    });
     const ul = document.createElement("ul");
     ul.classList.add("list-indiv");
 
@@ -74,6 +95,7 @@ function show_list(history_list) {
     }
 
     list_real.appendChild(ul);
+    ul.appendChild(cancelButton);
     ul.appendChild(category_li);
     ul.appendChild(content_li);
     ul.appendChild(price_li);
