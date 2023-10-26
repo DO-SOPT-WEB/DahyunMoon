@@ -13,13 +13,73 @@ const outcomeButton = document.querySelector(
   "input[type=checkbox][value='outcome']"
 );
 
+const submitButton = document.querySelector(".submitButton");
+const newPrice = document.querySelector(".new_price");
+const newContent = document.querySelector(".new_content");
+
+submitButton.addEventListener("click", function () {
+  if (categorySelect.value == "pin") {
+    transaction.category = "용돈";
+    transaction.price = Number(newPrice.value);
+  }
+  if (categorySelect.value == "salary") {
+    transaction.category = "월급";
+    transaction.price = Number(newPrice.value);
+  }
+  if (categorySelect.value == "shopping") {
+    transaction.category = "쇼핑";
+    transaction.price = Number(-newPrice.value);
+  }
+  if (categorySelect.value == "food") {
+    transaction.category = "식비";
+    transaction.price = Number(-newPrice.value);
+  }
+
+  transaction.content = newContent.value;
+
+  console.log(transaction);
+  HISTORY_LIST.push(transaction);
+  filter_history();
+  total_money = total_income + total_outcome;
+  total.textContent = `${total_money}원`;
+  income.textContent = `+${total_income}`;
+  outcome.textContent = `${total_outcome}`;
+  console.log(total_income, total_outcome);
+  alert("등록 성공!");
+});
+
 const initial_list = document.querySelector(".list-real");
 const addModal = document.querySelector(".add_modal");
-
+let transactions = [];
+let transaction = { category: "", content: "", price: 0 };
+transactions.push(transaction);
 const addButton = document.querySelector(".add_list");
 addButton.addEventListener("click", function () {
-  // addModal.style.transform = "translateY(-200%)";
+  addModal.style.transform = "translateY(-85%)";
+  addModal.style.display = "block";
 });
+const closeButton = document.querySelector(".closeModal");
+closeButton.addEventListener("click", function () {
+  addModal.style.transform = "translateY(15%)";
+  addModal.style.display = "block";
+});
+const incomeModalButton = document.querySelector(".incomeModalButton");
+const outcomeModalButton = document.querySelector(".outcomeModalButton");
+const categorySelect = document.querySelector(".category_option");
+incomeModalButton.addEventListener("click", modal_income_button);
+outcomeModalButton.addEventListener("click", modal_outcome_button);
+function modal_income_button() {
+  incomeModalButton.style.background = "salmon";
+  outcomeModalButton.style.background = "white";
+  categorySelect.innerHTML = `      <option value="pin">용돈</option>
+  <option value="salary">월급</option>`;
+}
+function modal_outcome_button() {
+  incomeModalButton.style.background = "white";
+  outcomeModalButton.style.background = "salmon";
+  categorySelect.innerHTML = `      <option value="shopping">쇼핑</option>
+  <option value="food">식비</option>`;
+}
 
 function filter_history() {
   const show_income = incomeButton.checked;
@@ -47,13 +107,15 @@ outcomeButton.addEventListener("change", filter_history);
 let total_income = 0;
 let total_outcome = 0;
 let total_money = null;
-
+const total = document.querySelector(".total");
+const income = document.querySelector(".income");
+const outcome = document.querySelector(".outcome");
 function show_list(history_list) {
   initial_list.innerHTML = ""; // 이전 내역 지우기
+  total_money = null;
+  total_income = 0;
+  total_outcome = 0;
   const list_real = document.querySelector(".list-real");
-  const income = document.querySelector(".income");
-  const outcome = document.querySelector(".outcome");
-  const total = document.querySelector(".total");
 
   history_list.forEach((item) => {
     const cancelButton = document.createElement("button");
@@ -95,6 +157,7 @@ function show_list(history_list) {
     if (item.price < 0) {
       price_li.style.color = "blue";
       total_outcome += item.price;
+      console.log(item.price, "가격");
     } else {
       price_li.style.color = "red";
       total_income += item.price;

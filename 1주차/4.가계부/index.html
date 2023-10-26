@@ -8,20 +8,6 @@
   </head>
   <body>
     <header>다현이의 가계부</header>
-    <!-- <div class="add_modal">
-      <div class="modal_header">내역 추가</div>
-
-      <button>수입</button>
-      <button>지출</button>
-
-      <ul>
-        <li>종류</li>
-        <li>금액</li>
-        <li>내용</li>
-      </ul>
-      <button>저장하기</button>
-      <button>닫기</button>
-    </div> -->
     <div class="my-account">
       <div class="inner">
         <div class="inner-1">나의 자산</div>
@@ -47,6 +33,28 @@
     <footer class="list-add">
       <button class="add_list">+</button>
     </footer>
+    <div class="add_modal">
+      <div class="modal_header">내역 추가</div>
+
+      <button class="incomeModalButton">수입</button>
+      <button class="outcomeModalButton">지출</button>
+
+      <ul>
+        <li>종류</li>
+        <form>
+          <select class="category_option">
+            <option value="pin">용돈</option>
+            <option value="salary">월급</option>
+          </select>
+        </form>
+        <li>금액</li>
+        <input class="new_price" />
+        <li>내용</li>
+        <input class="new_content" />
+      </ul>
+      <button class="submitButton">저장하기</button>
+      <button class="closeModal">닫기</button>
+    </div>
     <script src="./script.js"></script>
   </body>
 </html>

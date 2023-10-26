@@ -120,6 +120,7 @@ header {
 .list-indiv {
   display: flex;
   align-items: center;
+  position: relative;
   flex-shrink: 0; /*크기 자동조정 안되게 */
   width: 19rem;
   height: 3rem;
@@ -146,7 +147,9 @@ header {
 }
 
 .x {
-  align-self: flex-start;
+  position: absolute;
+  top: 0;
+  right: 0.5rem;
 }
 
 .list-add {
@@ -168,11 +171,52 @@ header {
   background-color: salmon;
 }
 
+.modal_header {
+  height: 2rem;
+  line-height: 2rem;
+  margin-bottom: 0.5rem;
+}
+
 .add_modal {
   position: absolute;
   width: 100%;
-  background: palegreen;
+  height: 23rem;
+  background-color: bisque;
   text-align: center;
-  /* transform: translateY(200%);
-  transition: transform 0.3s linear; */
+  transform: translateY(15%);
+  transition: transform 0.3s linear;
+  padding: 0.7rem 0;
+  display: hidden;
+}
+
+.add_modal ul {
+  list-style-type: none;
+  text-align: left;
+  height: 60%;
+}
+
+.add_modal li {
+  margin: 1rem 0;
+}
+
+.add_modal button {
+  width: 6rem;
+  height: 2rem;
+}
+
+.add_modal input {
+  height: 1.5rem;
+}
+
+.add_modal select {
+  width: 80%;
+  font-size: 1rem;
+}
+
+.incomeModalButton {
+  background: salmon;
+}
+
+.outcomeModalButton {
+  background: white;
 }
