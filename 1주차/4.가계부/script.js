@@ -16,6 +16,8 @@ const outcomeButton = document.querySelector(
 const submitButton = document.querySelector(".submitButton");
 const newPrice = document.querySelector(".new_price");
 const newContent = document.querySelector(".new_content");
+const YesCancel = document.querySelector(".cancel_yes");
+const NoCancel = document.querySelector(".cancel_no");
 
 submitButton.addEventListener("click", function () {
   if (categorySelect.value == "pin") {
@@ -101,6 +103,8 @@ function filter_item(show_income, show_outcome) {
   });
 }
 
+const cancel_modal = document.querySelector(".cancel_modal");
+
 incomeButton.addEventListener("change", filter_history);
 outcomeButton.addEventListener("change", filter_history);
 
@@ -122,22 +126,31 @@ function show_list(history_list) {
     cancelButton.classList.add("x");
     cancelButton.textContent = "x";
     cancelButton.addEventListener("click", function () {
+      cancel_modal.style.display = "block";
       const listItem = this.parentNode;
-      console.log(listItem);
-      listItem.remove();
-      const removeItem = history_list.find((x) => x.content == item.content);
-      console.log(removeItem);
-      if (removeItem.price > 0) {
-        total_income -= removeItem.price;
-      }
-      if (removeItem.price < 0) {
-        total_outcome -= removeItem.price;
-      }
+      YesCancel.addEventListener("click", function handler() {
+        console.log(listItem);
+        const removeItem = history_list.find((x) => x.content == item.content);
+        console.log(removeItem);
+        if (removeItem.price > 0) {
+          total_income -= removeItem.price;
+        }
+        if (removeItem.price < 0) {
+          total_outcome -= removeItem.price;
+        }
 
-      total_money = total_income - total_outcome;
-      total.textContent = `${total_money}원`;
-      income.textContent = `+${total_income}`;
-      outcome.textContent = `${total_outcome}`;
+        total_money = total_income - total_outcome;
+        total.textContent = `${total_money}원`;
+        income.textContent = `+${total_income}`;
+        outcome.textContent = `${total_outcome}`;
+        console.log(listItem, "cn");
+        listItem.remove();
+        cancel_modal.style.display = "none";
+        YesCancel.removeEventListener("click", handler);
+      });
+      NoCancel.addEventListener("click", function () {
+        cancel_modal.style.display = "none";
+      });
     });
     const ul = document.createElement("ul");
     ul.classList.add("list-indiv");
@@ -157,7 +170,7 @@ function show_list(history_list) {
     if (item.price < 0) {
       price_li.style.color = "blue";
       total_outcome += item.price;
-      console.log(item.price, "가격");
+      // console.log(item.price, "가격");
     } else {
       price_li.style.color = "red";
       total_income += item.price;
