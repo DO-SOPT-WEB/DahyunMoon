@@ -40,20 +40,30 @@ submitButton.addEventListener("click", function () {
   transaction.content = newContent.value;
 
   console.log(transaction);
-  HISTORY_LIST.push(transaction);
-  filter_history();
-  total_money = total_income + total_outcome;
-  total.textContent = `${total_money}원`;
-  income.textContent = `+${total_income}`;
-  outcome.textContent = `${total_outcome}`;
-  console.log(total_income, total_outcome);
-  alert("등록 성공!");
+  if (typeof transaction.price !== "number" || isNaN(transaction.price)) {
+    alert("가격을 숫자로 입력해주세요!");
+  } else if (
+    transaction.content === "" ||
+    transaction.category === "" ||
+    transaction.price === ""
+  ) {
+    alert("입력하지 않은 항목이 있습니다!");
+  } else {
+    HISTORY_LIST.push(transaction);
+    filter_history();
+    total_money = total_income + total_outcome;
+    total.textContent = `${total_money}원`;
+    income.textContent = `+${total_income}`;
+    outcome.textContent = `${total_outcome}`;
+    console.log(total_income, total_outcome);
+    alert("등록 성공!");
+  }
 });
 
 const initial_list = document.querySelector(".list-real");
 const addModal = document.querySelector(".add_modal");
 let transactions = [];
-let transaction = { category: "", content: "", price: 0 };
+let transaction = { category: "", content: "", price: null };
 transactions.push(transaction);
 const addButton = document.querySelector(".add_list");
 addButton.addEventListener("click", function () {
@@ -146,7 +156,7 @@ function show_list(history_list) {
         console.log(listItem, "cn");
         listItem.remove();
         cancel_modal.style.display = "none";
-        YesCancel.removeEventListener("click", handler);
+        YesCancel.removeEventListener("click", handler); //중복 제거
       });
       NoCancel.addEventListener("click", function () {
         cancel_modal.style.display = "none";
