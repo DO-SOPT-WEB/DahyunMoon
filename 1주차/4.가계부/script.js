@@ -19,29 +19,62 @@ const newContent = document.querySelector(".new_content");
 const YesCancel = document.querySelector(".cancel_yes");
 const NoCancel = document.querySelector(".cancel_no");
 
+// newPrice.addEventListener("input", function () {
+//   // 쉼표를 추가한 형식으로 값을 업데이트합니다.
+//   if (!isNaN(newPrice.value) || newPrice.value == "") {
+//     let inputValue = newPrice.value;
+//     inputValue = parseInt(inputValue.replace(/,/g, ""));
+//     newPrice.value = formatWithCommas(inputValue);
+//   } else {
+//     newPrice.value = "";
+//   }
+// });
+
+newPrice.addEventListener("input", function () {
+  // 현재 입력 값을 가져옴
+  let inputValue = newPrice.value;
+
+  // 숫자에서 쉼표를 제거
+  inputValue = inputValue.replace(/,/g, "");
+
+  // 숫자가 유효한지 확인
+  if (!isNaN(inputValue)) {
+    // 숫자를 다시 포맷팅
+    newPrice.value = formatWithCommas(inputValue);
+  } else {
+    // 유효하지 않은 숫자인 경우 입력 필드를 비움
+    newPrice.value = "";
+  }
+});
+
+// 쉼표를 추가하는 함수를 정의합니다.
+function formatWithCommas(number) {
+  return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+}
+
 submitButton.addEventListener("click", function () {
   if (categorySelect.value == "pin") {
     transaction.category = "용돈";
-    transaction.price = Number(newPrice.value);
+    transaction.price = parseFloat(newPrice.replace(/,/g, ""));
   }
   if (categorySelect.value == "salary") {
     transaction.category = "월급";
-    transaction.price = Number(newPrice.value);
+    transaction.price = parseFloat(newPrice.replace(/,/g, ""));
   }
   if (categorySelect.value == "shopping") {
     transaction.category = "쇼핑";
-    transaction.price = Number(-newPrice.value);
+    transaction.price = parseFloat(newPrice.replace(/,/g, ""));
   }
   if (categorySelect.value == "food") {
     transaction.category = "식비";
-    transaction.price = Number(-newPrice.value);
+    transaction.price = parseFloat(newPrice.replace(/,/g, ""));
   }
 
   transaction.content = newContent.value;
 
   console.log(transaction);
   if (typeof transaction.price !== "number" || isNaN(transaction.price)) {
-    alert("가격을 숫자로 입력해주세요!");
+    alert("금액을 숫자로 입력해주세요!");
   } else if (
     transaction.content === "" ||
     transaction.category === "" ||
@@ -52,10 +85,10 @@ submitButton.addEventListener("click", function () {
     HISTORY_LIST.push(transaction);
     filter_history();
     total_money = total_income + total_outcome;
-    total.textContent = `${total_money}원`;
-    income.textContent = `+${total_income}`;
-    outcome.textContent = `${total_outcome}`;
-    console.log(total_income, total_outcome);
+    total.textContent = `${total_money.toLocaleString()}원`;
+    income.textContent = `+${total_income.toLocaleString()}`;
+    outcome.textContent = `${total_outcome.toLocaleString()}`;
+    console.log(total_income, total_outcome.toLocaleString());
     alert("등록 성공!");
   }
 });
@@ -150,9 +183,9 @@ function show_list(history_list) {
         }
 
         total_money = total_income - total_outcome;
-        total.textContent = `${total_money}원`;
-        income.textContent = `+${total_income}`;
-        outcome.textContent = `${total_outcome}`;
+        total.textContent = `${total_money.toLocaleString()}원`;
+        income.textContent = `+${total_income.toLocaleString()}`;
+        outcome.textContent = `${total_outcome.toLocaleString()}`;
         console.log(listItem, "cn");
         listItem.remove();
         cancel_modal.style.display = "none";
@@ -176,7 +209,9 @@ function show_list(history_list) {
     const price_li = document.createElement("li");
     price_li.classList.add("price");
     price_li.textContent =
-      item.price < 0 ? `${item.price}원` : `+${item.price}원`;
+      item.price < 0
+        ? `${item.price.toLocaleString()}원`
+        : `+${item.price.toLocaleString()}원`;
     if (item.price < 0) {
       price_li.style.color = "blue";
       total_outcome += item.price;
@@ -195,9 +230,9 @@ function show_list(history_list) {
   if (!total_money) {
     //필터링에 따라 값 바뀜 방지
     total_money = total_income - total_outcome;
-    total.textContent = `${total_money}원`;
-    income.textContent = `+${total_income}`;
-    outcome.textContent = `${total_outcome}`;
+    total.textContent = `${total_money.toLocaleString()}원`;
+    income.textContent = `+${total_income.toLocaleString()}`;
+    outcome.textContent = `${total_outcome.toLocaleString()}`;
   }
 }
 
