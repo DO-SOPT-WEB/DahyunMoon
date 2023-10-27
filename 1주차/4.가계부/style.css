@@ -2,9 +2,10 @@ body {
   margin: 0;
   height: 100vh;
   position: relative;
+  overflow: hidden;
 }
 
-header {
+.main_header {
   width: 100%;
   height: 3rem;
   line-height: 3rem;
@@ -72,21 +73,23 @@ header {
 
 .list-header-2 {
   display: flex;
+  justify-content: center;
   margin: 1rem 1rem;
   height: 2rem;
   line-height: 2rem;
 }
 
 .list-header-2 .title {
-  width: 60%;
+  width: 50%;
   font-weight: bold;
 }
 
 .list-header-2 .button {
   width: 20%;
   border-radius: 0.4rem;
-  color: white;
-  background-color: salmon;
+  color: salmon;
+  background-color: bisque;
+  border: 0.1rem solid salmon;
   margin: 0 0.4rem;
   text-align: center;
 }
@@ -139,6 +142,11 @@ header {
   width: 55%;
   padding-left: 1rem;
   font-weight: bold;
+  margin-right: 1rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  max-width: 50%;
 }
 .list-indiv .price {
   font-size: 0.9rem;
@@ -171,6 +179,27 @@ header {
   background-color: salmon;
 }
 
+.category_list {
+  position: absolute;
+  right: 0%;
+  background-color: salmon;
+  border-radius: 1rem;
+  font-size: 2rem;
+  width: 15%;
+  height: 100%;
+}
+
+.return_home {
+  position: absolute;
+  right: 0%;
+  background-color: salmon;
+  border-radius: 1rem;
+  font-size: 2rem;
+  width: 15%;
+  height: 100%;
+  display: none;
+}
+
 .modal_header {
   height: 2rem;
   line-height: 2rem;
@@ -184,12 +213,11 @@ header {
   height: 23rem;
   background-color: bisque;
   text-align: center;
-  transform: translateY(15%);
+  transform: translateY(100%);
   transition: transform 0.3s linear;
   padding: 0.7rem 0;
   border-top-right-radius: 2rem;
   border-top-left-radius: 2rem;
-  display: none;
   z-index: 999;
 }
 
@@ -216,6 +244,17 @@ header {
 .add_modal select {
   width: 80%;
   font-size: 1rem;
+}
+
+/* 체크박스를 숨깁니다. */
+.button input[type="checkbox"] {
+  display: none;
+}
+
+/* 체크박스가 체크되었을 때, 레이블에 스타일을 적용합니다. */
+.button input[type="checkbox"]:checked + label {
+  color: salmon; /* 원하는 색깔로 변경하세요. */
+  font-weight: bold;
 }
 
 .incomeModalButton {
@@ -252,4 +291,62 @@ header {
   background-color: rgba(0, 0, 0, 0.5); /* 반투명 배경 */
   display: none;
   z-index: 990;
+}
+
+.category_page {
+  display: none;
+  width: 100vw;
+}
+
+.category_header {
+  font-size: 1rem;
+}
+
+.home {
+  display: block;
+}
+
+.category_box {
+  background-color: bisque;
+  height: 9rem;
+  width: 100%;
+}
+
+.each_category {
+  display: flex;
+  flex-direction: column;
+  align-items: left;
+  padding: 0 2rem;
+  margin: 1rem 0;
+}
+
+.category_header {
+  width: 70%;
+  font-weight: bold;
+}
+
+#newCategoryInput,
+#newCategoryOutput {
+  width: 80%;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 2rem;
+  margin: 0 1rem;
+}
+
+.category_ul {
+  display: flex;
+  justify-content: center;
+  padding: 0;
+}
+
+.category_li {
+  list-style-type: none;
+  margin: 0 1rem;
+  background-color: salmon;
+  border-radius: 2rem;
+  width: 4rem;
+  height: 2.5rem;
+  line-height: 2.5rem;
+  text-align: center;
 }

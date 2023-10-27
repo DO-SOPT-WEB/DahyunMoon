@@ -47,42 +47,30 @@ function formatWithCommas(number) {
 }
 
 submitButton.addEventListener("click", function () {
-  if (categorySelect.value == "pin") {
-    transaction.category = "용돈";
-    transaction.price = parseFloat(newPrice.replace(/,/g, ""));
-  }
-  if (categorySelect.value == "salary") {
-    transaction.category = "월급";
-    transaction.price = parseFloat(newPrice.replace(/,/g, ""));
-  }
-  if (categorySelect.value == "shopping") {
-    transaction.category = "쇼핑";
-    transaction.price = parseFloat(newPrice.replace(/,/g, ""));
-  }
-  if (categorySelect.value == "food") {
-    transaction.category = "식비";
-    transaction.price = parseFloat(newPrice.replace(/,/g, ""));
-  }
+  let category = categorySelect.value;
+  let price = newPrice.value.replace(/,/g, "");
+  let content = newContent.value;
 
-  transaction.content = newContent.value;
-
-  console.log(transaction);
-  if (typeof transaction.price !== "number" || isNaN(transaction.price)) {
-    alert("금액을 숫자로 입력해주세요!");
-  } else if (
-    transaction.content === "" ||
-    transaction.category === "" ||
-    transaction.price === ""
-  ) {
+  if (price === "" || content === "") {
     alert("입력하지 않은 항목이 있습니다!");
   } else {
+    let transaction = {
+      category: category,
+      price: parseInt(price),
+      content: content,
+    };
+    console.log(transaction);
     HISTORY_LIST.push(transaction);
     filter_history();
-    total_money = total_income + total_outcome;
+
+    total_income = // Calculate total income
+      total_outcome = // Calculate total outcome
+      total_money =
+        total_income + total_outcome;
     total.textContent = `${total_money.toLocaleString()}원`;
     income.textContent = `+${total_income.toLocaleString()}`;
     outcome.textContent = `${total_outcome.toLocaleString()}`;
-    console.log(total_income, total_outcome.toLocaleString());
+
     alert("등록 성공!");
   }
 });
@@ -98,16 +86,35 @@ modalBackground.classList.add("modal-background");
 
 const addButton = document.querySelector(".add_list");
 addButton.addEventListener("click", function () {
-  addModal.style.transform = "translateY(-85%)";
-  addModal.style.display = "block";
+  addModal.style.transform = "translateY(-80%)";
   modalBackground.style.display = "block";
   document.body.appendChild(modalBackground);
+  const categories = JSON.parse(localStorage.getItem("categories"));
+  const incomeCategories = categories.income;
+  // 기존의 옵션을 모두 제거합니다.
+  while (categorySelect.firstChild) {
+    categorySelect.removeChild(categorySelect.firstChild);
+  }
+  incomeCategories.forEach((category) => {
+    const newOption = document.createElement("option");
+    newOption.value = category;
+    newOption.text = category;
+    categorySelect.appendChild(newOption);
+  });
+
+  const outcomeCategories = categories.outcome;
+  outcomeCategories.forEach((category) => {
+    const newOption = document.createElement("option");
+    newOption.value = category;
+    newOption.text = category;
+    categorySelect.appendChild(newOption);
+  });
 });
 
 const closeButton = document.querySelector(".closeModal");
 closeButton.addEventListener("click", function () {
-  addModal.style.transform = "translateY(15%)";
-  addModal.style.display = "block";
+  addModal.style.transform = "translateY(100%)";
+  // addModal.style.display = "none";
   modalBackground.style.display = "none";
 });
 const incomeModalButton = document.querySelector(".incomeModalButton");
@@ -118,14 +125,37 @@ outcomeModalButton.addEventListener("click", modal_outcome_button);
 function modal_income_button() {
   incomeModalButton.style.background = "salmon";
   outcomeModalButton.style.background = "white";
-  categorySelect.innerHTML = `      <option value="pin">용돈</option>
-  <option value="salary">월급</option>`;
+  // 로컬 스토리지에서 수입 카테고리를 읽어옵니다.
+  const categories = JSON.parse(localStorage.getItem("categories"));
+  const incomeCategories = categories ? categories.income : [];
+  categorySelect.innerHTML = "";
+
+  // 드롭다운을 업데이트합니다.
+  categorySelect.innerHTML = incomeCategories
+    .map(
+      (category) => `
+    <option value="${category}">${category}</option>
+  `
+    )
+    .join("");
+
+  console.log(categorySelect);
 }
 function modal_outcome_button() {
   incomeModalButton.style.background = "white";
   outcomeModalButton.style.background = "salmon";
-  categorySelect.innerHTML = `      <option value="shopping">쇼핑</option>
-  <option value="food">식비</option>`;
+  const categories = JSON.parse(localStorage.getItem("categories"));
+  const outcomeCategories = categories ? categories.outcome : [];
+  categorySelect.innerHTML = "";
+
+  // 드롭다운을 업데이트합니다.
+  categorySelect.innerHTML = outcomeCategories
+    .map(
+      (category) => `
+    <option value="${category}">${category}</option>
+  `
+    )
+    .join("");
 }
 
 function filter_history() {
@@ -239,3 +269,113 @@ function show_list(history_list) {
 }
 
 filter_history();
+const home = document.querySelector(".home");
+const categoryButton = document.querySelector(".category_list");
+const returnHomeButton = document.querySelector(".return_home");
+const categoryPage = document.querySelector(".category_page");
+categoryButton.addEventListener("click", function () {
+  home.style.display = "none";
+  returnHomeButton.style.display = "block";
+  categoryPage.style.display = "block";
+  addButton.style.display = "none";
+  addModal.style.display = "none";
+});
+returnHomeButton.addEventListener("click", function () {
+  home.style.display = "block";
+  returnHomeButton.style.display = "none";
+  categoryPage.style.display = "none";
+  addButton.style.display = "block";
+  addModal.style.display = "block";
+});
+
+const INITIAL_CATEGORIES = {
+  income: ["용돈", "월급"],
+  outcome: ["쇼핑", "식비"],
+};
+
+// 이 초기 카테고리를 localStorage에 저장합니다.
+if (!localStorage.getItem("categories")) {
+  // 초기 카테고리 데이터를 로컬 스토리지에 설정
+  localStorage.setItem("categories", JSON.stringify(INITIAL_CATEGORIES));
+}
+const initialCategories = JSON.parse(localStorage.getItem("categories"));
+
+// 페이지 렌더링 시 카테고리를 표시합니다.
+displayCategories(initialCategories.income, "incomeCategories");
+displayCategories(initialCategories.outcome, "outcomeCategories");
+
+// 새 카테고리를 추가하는 함수
+function addCategory(newCategory, categoryType) {
+  // localStorage에서 현재 카테고리 목록을 가져옵니다.
+  const categories = JSON.parse(localStorage.getItem("categories"));
+
+  // 새 카테고리를 추가합니다.
+  categories[categoryType].push(newCategory);
+
+  // localStorage를 업데이트합니다.
+  localStorage.setItem("categories", JSON.stringify(categories));
+
+  // 입력 필드 초기화
+  newCategoryInput.value = "";
+
+  // 카테고리 다시 표시
+  displayCategories(categories.income, "incomeCategories");
+  displayCategories(categories.outcome, "outcomeCategories");
+
+  const newOption = document.createElement("option");
+  newOption.value = newCategory;
+  newOption.text = newCategory;
+  categorySelect.appendChild(newOption);
+}
+
+// 카테고리를 표시하는 함수
+function displayCategories(categories, containerId) {
+  const container = document.getElementById(containerId);
+  container.innerHTML = "";
+  const ul = document.createElement("ul");
+  ul.classList.add("category_ul");
+  categories.forEach((category) => {
+    const li = document.createElement("li");
+    li.classList.add("category_li");
+    li.textContent = category;
+    ul.appendChild(li);
+  });
+  container.appendChild(ul);
+}
+
+// "새 카테고리 입력" 필드에 이벤트 리스너 추가
+const newCategoryInput = document.getElementById("newCategoryInput");
+newCategoryInput.addEventListener("keyup", function (event) {
+  if (event.key === "Enter" && newCategoryInput.value.trim() !== "") {
+    const newCategory = newCategoryInput.value;
+    const categoryType = "income"; // 필요에 따라 설정
+    addCategory(newCategory, categoryType);
+  }
+});
+
+// "새 카테고리 출력" 필드에 이벤트 리스너 추가
+const newCategoryOutput = document.getElementById("newCategoryOutput");
+newCategoryOutput.addEventListener("keyup", function (event) {
+  if (event.key === "Enter" && newCategoryOutput.value.trim() !== "") {
+    const newCategory = newCategoryOutput.value;
+    const categoryType = "outcome"; // 필요에 따라 설정
+    addCategory(newCategory, categoryType);
+  }
+});
+
+function removeCategory(categoryToRemove, categoryType) {
+  // localStorage에서 현재 카테고리 목록을 가져옵니다.
+  const categories = JSON.parse(localStorage.getItem("categories"));
+
+  // 특정 카테고리 배열에서 항목 삭제
+  const index = categories[categoryType].indexOf(categoryToRemove);
+  if (index !== -1) {
+    categories[categoryType].splice(index, 1);
+  }
+
+  // localStorage를 업데이트합니다.
+  localStorage.setItem("categories", JSON.stringify(categories));
+}
+removeCategory("산하", "income");
+
+console.log(localStorage.getItem("categories"));
