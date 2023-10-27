@@ -99,7 +99,8 @@ body {
   flex-direction: column;
   align-items: center;
   position: relative;
-  height: 20rem;
+  height: 22rem;
+  width: 100vw;
   overflow-y: scroll;
 }
 
@@ -117,7 +118,7 @@ body {
 }
 
 .list-add {
-  height: 10%;
+  height: 8%;
 }
 
 .list-indiv {
@@ -125,7 +126,7 @@ body {
   align-items: center;
   position: relative;
   flex-shrink: 0; /*크기 자동조정 안되게 */
-  width: 19rem;
+  width: 80%;
   height: 3rem;
   background-color: bisque;
   border: 0.15rem solid salmon;
@@ -161,7 +162,6 @@ body {
 }
 
 .list-add {
-  height: 3.5rem;
   position: absolute;
   bottom: 0%;
   width: 100%;
@@ -210,7 +210,7 @@ body {
 .add_modal {
   position: absolute;
   width: 100%;
-  height: 23rem;
+  height: 24rem;
   background-color: bisque;
   text-align: center;
   transform: translateY(100%);

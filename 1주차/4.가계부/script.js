@@ -86,7 +86,7 @@ modalBackground.classList.add("modal-background");
 
 const addButton = document.querySelector(".add_list");
 addButton.addEventListener("click", function () {
-  addModal.style.transform = "translateY(-80%)";
+  addModal.style.transform = "translateY(-85%)";
   modalBackground.style.display = "block";
   document.body.appendChild(modalBackground);
   const categories = JSON.parse(localStorage.getItem("categories"));
@@ -168,7 +168,6 @@ function filter_history() {
 
 function filter_item(show_income, show_outcome) {
   return HISTORY_LIST.filter((item) => {
-    //return 없으면 반환안함
     if (show_income && show_outcome) {
       return true;
     }
@@ -218,10 +217,9 @@ function show_list(history_list) {
         total.textContent = `${total_money.toLocaleString()}원`;
         income.textContent = `+${total_income.toLocaleString()}`;
         outcome.textContent = `${total_outcome.toLocaleString()}`;
-        console.log(listItem, "cn");
         listItem.remove();
         cancel_modal.style.display = "none";
-        YesCancel.removeEventListener("click", handler); //중복 제거
+        // YesCancel.removeEventListener("click", handler);
       });
       NoCancel.addEventListener("click", function () {
         cancel_modal.style.display = "none";
@@ -376,6 +374,6 @@ function removeCategory(categoryToRemove, categoryType) {
   // localStorage를 업데이트합니다.
   localStorage.setItem("categories", JSON.stringify(categories));
 }
-removeCategory("산하", "income");
+removeCategory("장학금", "income");
 
 console.log(localStorage.getItem("categories"));
