@@ -52,3 +52,19 @@ moreButtons.forEach((moreButton) => {
     this.style.display = "none";
   });
 });
+
+const imgPreview = document.querySelector(".img-preview");
+const scrollLeft = document.querySelector(".scroll-left");
+const scrollRight = document.querySelector(".scroll-right");
+
+// 스크롤 왼쪽 버튼을 클릭했을 때 실행되는 함수
+scrollLeft.addEventListener("click", () => {
+  // 가장 왼쪽 이미지로 스크롤
+  imgPreview.scrollLeft = 0;
+});
+
+// 스크롤 오른쪽 버튼을 클릭했을 때 실행되는 함수
+scrollRight.addEventListener("click", () => {
+  // 가장 오른쪽 이미지로 스크롤
+  imgPreview.scrollLeft = imgPreview.scrollWidth;
+});

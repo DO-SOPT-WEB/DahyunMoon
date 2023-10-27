@@ -48,8 +48,10 @@ li {
 .img-preview {
   display: flex;
   overflow-x: auto; /*가로 스크롤바*/
+  margin: 0 1rem;
   height: 28rem;
   align-items: center;
+  position: relative;
 }
 
 ::-webkit-scrollbar {
@@ -240,4 +242,24 @@ footer {
 
 footer {
   padding-left: 1rem;
+}
+
+.scroll-left {
+  position: absolute;
+  top: 35%;
+  left: 0;
+  font-size: 3rem;
+  font-weight: bold;
+  color: mediumaquamarine;
+  cursor: pointer;
+}
+
+.scroll-right {
+  position: absolute;
+  top: 35%;
+  right: 0;
+  font-size: 3rem;
+  font-weight: bold;
+  color: mediumaquamarine;
+  cursor: pointer;
 }
