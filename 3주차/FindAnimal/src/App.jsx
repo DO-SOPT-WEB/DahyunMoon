@@ -1,35 +1,36 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { useState } from "react";
+import "./App.css";
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [count, setCount] = useState(0);
+  const [showPage0, setShowPage0] = useState(true);
+  const [showPage1, setShowPage1] = useState(false);
 
+  const startGame = () => {
+    setShowPage0(false);
+    setShowPage1(true);
+  };
   return (
     <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+      {showPage0 && <Page0 startGame={startGame} />}
+      {showPage1 && <Page1 />}
     </>
-  )
+  );
 }
 
-export default App
+function Page0({ startGame }) {
+  return (
+    <>
+      <header>나와 닮은 동물은?</header>
+      <button onClick={startGame}>시작하기</button>
+    </>
+  );
+}
+function Page1() {
+  return (
+    <div>
+      <h2></h2>
+    </div>
+  );
+}
+export default App;
