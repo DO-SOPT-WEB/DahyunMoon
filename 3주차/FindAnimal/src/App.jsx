@@ -3,26 +3,43 @@ import "./App.css";
 import styled from "styled-components";
 
 function App() {
-  const [count, setCount] = useState(0);
   const [showPage0, setShowPage0] = useState(true);
   const [showPage1, setShowPage1] = useState(false);
   const [showPage2, setShowPage2] = useState(false);
+  const [showPage3, setShowPage3] = useState(false);
+  const [showPage4, setShowPage4] = useState(false);
+  const [selectedOptions, setSelectedOptions] = useState([]);
 
   const startGame = () => {
     setShowPage0(false);
     setShowPage1(true);
   };
 
-  const goPage1 = () => {
+  const goPage1 = (option) => {
     setShowPage1(false);
     setShowPage2(true);
+    setSelectedOptions([...selectedOptions, option]);
+  };
+
+  const goPage2 = (option) => {
+    setShowPage2(false);
+    setShowPage3(true);
+    setSelectedOptions([...selectedOptions, option]);
+  };
+
+  const goPage3 = (option) => {
+    setShowPage3(false);
+    setShowPage4(true);
+    setSelectedOptions([...selectedOptions, option]);
   };
 
   return (
     <>
       {showPage0 && <Page0 startGame={startGame} />}
       {showPage1 && <Page1 goPage1={goPage1} />}
-      {showPage2 && <Page2 />}
+      {showPage2 && <Page2 goPage2={goPage2} />}
+      {showPage3 && <Page3 goPage3={goPage3} />}
+      {showPage4 && <Page4 selectedOptions={selectedOptions} />}
     </>
   );
 }
@@ -62,18 +79,14 @@ function Page0({ startGame }) {
 function Page1({ goPage1 }) {
   const [selectedOption, setSelectedOption] = useState(null);
 
-  // 선택한 옵션이 변경될 때 호출되는 함수
   const handleOptionChange = (option) => {
     setSelectedOption(option);
   };
 
-  // "next" 버튼을 클릭했을 때 실행되는 함수
   const handlePage2 = () => {
     if (selectedOption !== null) {
-      setShowPage1(false);
-      setShowPage2(true);
+      goPage1(selectedOption);
     } else {
-      // 선택한 옵션이 없는 경우에는 경고 메시지 또는 다른 처리를 할 수 있습니다.
       alert("동물을 선택해주세요.");
     }
   };
@@ -117,7 +130,7 @@ function Page1({ goPage1 }) {
             <button>back</button>{" "}
           </span>
           <span>
-            <button onClick={goPage1}>next</button>{" "}
+            <button onClick={handlePage2}>next</button>{" "}
           </span>
         </div>
       </Group>
@@ -125,21 +138,17 @@ function Page1({ goPage1 }) {
   );
 }
 
-function Page2() {
+function Page2({ goPage2 }) {
   const [selectedOption, setSelectedOption] = useState(null);
 
-  // 선택한 옵션이 변경될 때 호출되는 함수
   const handleOptionChange = (option) => {
     setSelectedOption(option);
   };
 
-  // "next" 버튼을 클릭했을 때 실행되는 함수
   const handlePage3 = () => {
     if (selectedOption !== null) {
-      setShowPage1(false);
-      setShowPage2(true);
+      goPage2(selectedOption);
     } else {
-      // 선택한 옵션이 없는 경우에는 경고 메시지 또는 다른 처리를 할 수 있습니다.
       alert("동물을 선택해주세요.");
     }
   };
@@ -189,6 +198,73 @@ function Page2() {
       </Group>
     </div>
   );
+}
+
+function Page3({ goPage3 }) {
+  const [selectedOption, setSelectedOption] = useState(null);
+
+  const handleOptionChange = (option) => {
+    setSelectedOption(option);
+  };
+
+  const handlePage3 = () => {
+    if (selectedOption !== null) {
+      goPage3(selectedOption);
+    } else {
+      alert("동물을 선택해주세요.");
+    }
+  };
+
+  return (
+    <div>
+      <Header>나와 닮은 동물은?</Header>
+      <Group>
+        귀엽다는 말 들어본 적 있어?
+        <div className="question-box">
+          <Question>
+            <input
+              type="radio"
+              name="answer"
+              value="응!!"
+              onChange={() => handleOptionChange("응!!")}
+            />{" "}
+            응!!
+          </Question>
+          <Question>
+            <input
+              type="radio"
+              name="answer"
+              value="반반"
+              onChange={() => handleOptionChange("반반")}
+            />{" "}
+            반반
+          </Question>
+          <Question>
+            <input
+              type="radio"
+              name="answer"
+              value="아니."
+              onChange={() => handleOptionChange("아니.")}
+            />{" "}
+            아니.
+          </Question>
+        </div>
+        <div>
+          <span>
+            <button>back</button>{" "}
+          </span>
+          <span>
+            <button onClick={handlePage3}>next</button>{" "}
+          </span>
+        </div>
+      </Group>
+    </div>
+  );
+}
+
+function Page4({ selectedOptions }) {
+  console.log(selectedOptions);
+  return <div>끝!</div>;
 }
 
 export default App;
