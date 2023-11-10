@@ -12,7 +12,6 @@ function App() {
   const [selectedOptions, setSelectedOptions] = useState([]);
 
   const startGame = (page) => {
-    // 인자에 따라 페이지 이동 처리
     if (page === "page1") {
       setShowPage0(false);
       setShowPage1(true);
@@ -218,8 +217,6 @@ function Page1({ goPage2, goPage0 }) {
   const handleGoPage1 = () => {
     goPage0();
   };
-
-  console.log(selectedOption);
   return (
     <div>
       <Header>나와 닮은 동물은?</Header>
@@ -275,7 +272,6 @@ function Page2({ goPage3, goPage1 }) {
       alert("동물을 선택해주세요.");
     }
   };
-  console.log(selectedOption);
   return (
     <div>
       <Header>나와 닮은 동물은?</Header>
@@ -323,7 +319,6 @@ function Page3({ goPage4, goPage2 }) {
       alert("동물을 선택해주세요.");
     }
   };
-  console.log(selectedOption);
   return (
     <div>
       <Header>나와 닮은 동물은?</Header>
@@ -359,8 +354,6 @@ function Page4({ selectedOptions, animalData, restartPage1 }) {
         data.answer.toString() === selectedOptions.toString()
     );
 
-    console.log("matchingAnimalData:", matchingAnimalData);
-
     return matchingAnimalData ? matchingAnimalData : "알 수 없음";
   }
   const handleRestart = () => {
@@ -368,7 +361,6 @@ function Page4({ selectedOptions, animalData, restartPage1 }) {
   };
   const matchingAnimal = getMatchingAnimal(selectedOptions).animal;
   const matchingAnimalPic = getMatchingAnimal(selectedOptions).imgUrl;
-  console.log(selectedOptions);
 
   return (
     <div>
@@ -414,8 +406,6 @@ const Question = styled.button`
   margin: 3rem 3rem;
   font-size: 1.5rem;
   font-weight: bold;
-  background-color: ${(props) => (props.active ? "#6495ed" : "initial")};
-  color: ${(props) => (props.active ? "white" : "initial")};
   &:hover {
     background-color: #6495ed;
   }
