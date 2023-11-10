@@ -22,6 +22,12 @@ function App() {
     }
   };
 
+  const restartPage1 = () => {
+    setShowPage1(true);
+    setShowPage4(false);
+    setSelectedOptions([]);
+  };
+
   const goPage1 = (option) => {
     setShowPage1(false);
     setShowPage2(true);
@@ -71,7 +77,11 @@ function App() {
       {showPage2 && <Page2 goPage2={goPage2} />}
       {showPage3 && <Page3 goPage3={goPage3} />}
       {showPage4 && (
-        <Page4 selectedOptions={selectedOptions} animalData={animalData} />
+        <Page4
+          selectedOptions={selectedOptions}
+          animalData={animalData}
+          restartPage1={restartPage1}
+        />
       )}
     </>
   );
@@ -273,7 +283,7 @@ function Page3({ goPage3 }) {
   );
 }
 
-function Page4({ selectedOptions, animalData }) {
+function Page4({ selectedOptions, animalData, restartPage1 }) {
   function getMatchingAnimal(selectedOptions) {
     const matchingAnimalData = animalData.find(
       (data) =>
@@ -285,13 +295,18 @@ function Page4({ selectedOptions, animalData }) {
 
     return matchingAnimalData ? matchingAnimalData.animal : "알 수 없음";
   }
+  const handleRestart = () => {
+    restartPage1();
+  };
   const matchingAnimal = getMatchingAnimal(selectedOptions);
   console.log(selectedOptions);
+
   return (
     <div>
       끝!
       <Group>
         <p>선택한 동물: {matchingAnimal}</p>
+        <button onClick={handleRestart}>다시하기</button>
       </Group>
     </div>
   );
