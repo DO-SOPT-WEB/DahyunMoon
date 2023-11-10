@@ -128,14 +128,12 @@ function PageRandom({ animalData }) {
       setCountdown((prevCountdown) => prevCountdown - 1);
     }, 1000);
 
-    // 3초 후에 랜덤 동물을 표시
     const timeoutId = setTimeout(() => {
       clearInterval(intervalId);
       const randomAnimalIndex = Math.floor(Math.random() * animalData.length);
       setDisplayAnimal(animalData[randomAnimalIndex].animal);
     }, 3000);
 
-    // 컴포넌트가 언마운트되면 타이머 해제
     return () => {
       clearInterval(intervalId);
       clearTimeout(timeoutId);
@@ -174,31 +172,10 @@ function Page1({ goPage1 }) {
       <Group>
         보통 쉬는 날 집에 있어??
         <div className="question-box">
-          <Question>
-            <input
-              type="radio"
-              name="answer"
-              value="웅!!"
-              onChange={() => handleOptionChange("응!!")}
-            />{" "}
-            응!!
-          </Question>
-          <Question>
-            <input
-              type="radio"
-              name="answer"
-              value="반반"
-              onChange={() => handleOptionChange("반반")}
-            />{" "}
-            반반
-          </Question>
-          <Question>
-            <input
-              type="radio"
-              name="answer"
-              value="아니ㅠ"
-              onChange={() => handleOptionChange("밖에 나가!!")}
-            />{" "}
+          <Question onClick={() => handleOptionChange("웅!")}> 응!!</Question>
+          <Question onClick={() => handleOptionChange("반반")}> 반반</Question>
+          <Question onClick={() => handleOptionChange("아니ㅠ")}>
+            {" "}
             밖에 나가!!
           </Question>
         </div>
@@ -236,31 +213,10 @@ function Page2({ goPage2 }) {
       <Group>
         물놀이 좋아해??
         <div className="question-box">
-          <Question>
-            <input
-              type="radio"
-              name="answer"
-              value="웅!!"
-              onChange={() => handleOptionChange("응!!")}
-            />{" "}
-            웅!!
-          </Question>
-          <Question>
-            <input
-              type="radio"
-              name="answer"
-              value="반반"
-              onChange={() => handleOptionChange("반반")}
-            />{" "}
-            반반
-          </Question>
-          <Question>
-            <input
-              type="radio"
-              name="answer"
-              value="아니ㅠ"
-              onChange={() => handleOptionChange("아니ㅠ")}
-            />{" "}
+          <Question onClick={() => handleOptionChange("웅!")}> 웅!!</Question>
+          <Question onClick={() => handleOptionChange("반반")}> 반반</Question>
+          <Question onClick={() => handleOptionChange("아니ㅠ")}>
+            {" "}
             아니ㅠ
           </Question>
         </div>
@@ -298,31 +254,10 @@ function Page3({ goPage3 }) {
       <Group>
         귀엽다는 말 들어본 적 있어?
         <div className="question-box">
-          <Question>
-            <input
-              type="radio"
-              name="answer"
-              value="웅!!"
-              onChange={() => handleOptionChange("응!!")}
-            />{" "}
-            응!!
-          </Question>
-          <Question>
-            <input
-              type="radio"
-              name="answer"
-              value="반반"
-              onChange={() => handleOptionChange("반반")}
-            />{" "}
-            반반
-          </Question>
-          <Question>
-            <input
-              type="radio"
-              name="answer"
-              value="아니ㅠ"
-              onChange={() => handleOptionChange("아니.")}
-            />{" "}
+          <Question onClick={() => handleOptionChange("웅!")}> 응!!</Question>
+          <Question onClick={() => handleOptionChange("반반")}> 반반</Question>
+          <Question onClick={() => handleOptionChange("아니ㅠ")}>
+            {" "}
             아니.
           </Question>
         </div>
