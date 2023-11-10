@@ -24,23 +24,52 @@ function App() {
 
   const restartPage1 = () => {
     setShowPage1(true);
+    setShowPage0(false);
+    setShowPage2(false);
+    setShowPage3(false);
     setShowPage4(false);
     setSelectedOptions([]);
   };
 
-  const goPage1 = (option) => {
+  const goPage0 = (option) => {
+    setShowPage0(true);
     setShowPage1(false);
-    setShowPage2(true);
+    setShowPage2(false);
+    setShowPage3(false);
+    setShowPage4(false);
+  };
+
+  const goPage1 = (option) => {
+    setShowPage0(false);
+    setShowPage1(true);
+    setShowPage2(false);
+    setShowPage3(false);
+    setShowPage4(false);
     setSelectedOptions([...selectedOptions, option]);
   };
 
   const goPage2 = (option) => {
-    setShowPage2(false);
-    setShowPage3(true);
+    setShowPage0(false);
+    setShowPage1(false);
+    setShowPage2(true);
+    setShowPage4(false);
+    setShowPage3(false);
     setSelectedOptions([...selectedOptions, option]);
   };
 
   const goPage3 = (option) => {
+    setShowPage0(false);
+    setShowPage1(false);
+    setShowPage2(false);
+    setShowPage3(true);
+    setShowPage4(false);
+    setSelectedOptions([...selectedOptions, option]);
+  };
+
+  const goPage4 = (option) => {
+    setShowPage0(false);
+    setShowPage1(false);
+    setShowPage2(false);
     setShowPage3(false);
     setShowPage4(true);
     setSelectedOptions([...selectedOptions, option]);
@@ -73,9 +102,9 @@ function App() {
     <>
       {showPage0 && <Page0 startGame={startGame} />}
       {showPageRandom && <PageRandom animalData={animalData} />}
-      {showPage1 && <Page1 goPage1={goPage1} />}
-      {showPage2 && <Page2 goPage2={goPage2} />}
-      {showPage3 && <Page3 goPage3={goPage3} />}
+      {showPage1 && <Page1 goPage0={goPage0} goPage2={goPage2} />}
+      {showPage2 && <Page2 goPage1={goPage1} goPage3={goPage3} />}
+      {showPage3 && <Page3 goPage2={goPage2} goPage4={goPage4} />}
       {showPage4 && (
         <Page4
           selectedOptions={selectedOptions}
@@ -160,24 +189,28 @@ function PageRandom({ animalData }) {
       ) : (
         <Group>{displayAnimal}</Group>
       )}
-      <button onClick={handleRetry}>다시하기</button>
+      <NavigateButton onClick={handleRetry}>다시하기</NavigateButton>
     </div>
   );
 }
 
-function Page1({ goPage1 }) {
+function Page1({ goPage2, goPage0 }) {
   const [selectedOption, setSelectedOption] = useState(null);
 
   const handleOptionChange = (option) => {
     setSelectedOption(option);
   };
 
-  const handlePage2 = () => {
+  const handleGoPage2 = () => {
     if (selectedOption !== null) {
-      goPage1(selectedOption);
+      goPage2(selectedOption);
     } else {
       alert("동물을 선택해주세요.");
     }
+  };
+
+  const handleGoPage1 = () => {
+    goPage0();
   };
   console.log(selectedOption);
   return (
@@ -195,10 +228,10 @@ function Page1({ goPage1 }) {
         </div>
         <div>
           <span>
-            <button>back</button>{" "}
+            <NavigateButton onClick={handleGoPage1}>back</NavigateButton>{" "}
           </span>
           <span>
-            <button onClick={handlePage2}>next</button>{" "}
+            <NavigateButton onClick={handleGoPage2}>next</NavigateButton>{" "}
           </span>
         </div>
       </Group>
@@ -206,16 +239,20 @@ function Page1({ goPage1 }) {
   );
 }
 
-function Page2({ goPage2 }) {
+function Page2({ goPage3, goPage1 }) {
   const [selectedOption, setSelectedOption] = useState(null);
 
   const handleOptionChange = (option) => {
     setSelectedOption(option);
   };
 
-  const handlePage3 = () => {
+  const handleGoPage1 = () => {
+    goPage1();
+  };
+
+  const handleGoPage3 = () => {
     if (selectedOption !== null) {
-      goPage2(selectedOption);
+      goPage3(selectedOption);
     } else {
       alert("동물을 선택해주세요.");
     }
@@ -236,10 +273,10 @@ function Page2({ goPage2 }) {
         </div>
         <div>
           <span>
-            <button>back</button>{" "}
+            <NavigateButton onClick={handleGoPage1}>back</NavigateButton>{" "}
           </span>
           <span>
-            <button onClick={handlePage3}>next</button>{" "}
+            <NavigateButton onClick={handleGoPage3}>next</NavigateButton>{" "}
           </span>
         </div>
       </Group>
@@ -247,16 +284,19 @@ function Page2({ goPage2 }) {
   );
 }
 
-function Page3({ goPage3 }) {
+function Page3({ goPage4, goPage2 }) {
   const [selectedOption, setSelectedOption] = useState(null);
 
   const handleOptionChange = (option) => {
     setSelectedOption(option);
   };
 
-  const handlePage4 = () => {
+  const handleGoPage2 = () => {
+    goPage2();
+  };
+  const handleGoPage4 = () => {
     if (selectedOption !== null) {
-      goPage3(selectedOption);
+      goPage4(selectedOption);
     } else {
       alert("동물을 선택해주세요.");
     }
@@ -276,10 +316,10 @@ function Page3({ goPage3 }) {
         </div>
         <div>
           <span>
-            <button>back</button>{" "}
+            <NavigateButton onClick={handleGoPage2}>back</NavigateButton>{" "}
           </span>
           <span>
-            <button onClick={handlePage4}>결과보기</button>{" "}
+            <NavigateButton onClick={handleGoPage4}>결과보기</NavigateButton>{" "}
           </span>
         </div>
       </Group>
@@ -310,7 +350,7 @@ function Page4({ selectedOptions, animalData, restartPage1 }) {
       끝!
       <Group>
         <p>선택한 동물: {matchingAnimal}</p>
-        <button onClick={handleRestart}>다시하기</button>
+        <NavigateButton onClick={handleRestart}>다시하기</NavigateButton>
       </Group>
     </div>
   );
@@ -362,4 +402,11 @@ const ClickButton = styled.button`
   width: 8rem;
   height: 3rem;
   font-weight: bold;
+`;
+
+const NavigateButton = styled.button`
+  background-color: white;
+  &:hover {
+    background-color: #6495ed;
+  }
 `;
