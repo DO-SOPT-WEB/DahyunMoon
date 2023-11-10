@@ -196,22 +196,23 @@ function PageRandom({ animalData }) {
 
 function Page1({ goPage2, goPage0 }) {
   const [selectedOption, setSelectedOption] = useState(null);
+  const [buttonActive, setButtonActive] = useState(false);
 
   const handleOptionChange = (option) => {
     setSelectedOption(option);
+    setButtonActive(option !== null);
   };
 
   const handleGoPage2 = () => {
     if (selectedOption !== null) {
       goPage2(selectedOption);
-    } else {
-      alert("동물을 선택해주세요.");
     }
   };
 
   const handleGoPage1 = () => {
     goPage0();
   };
+
   console.log(selectedOption);
   return (
     <div>
@@ -231,7 +232,9 @@ function Page1({ goPage2, goPage0 }) {
             <NavigateButton onClick={handleGoPage1}>back</NavigateButton>{" "}
           </span>
           <span>
-            <NavigateButton onClick={handleGoPage2}>next</NavigateButton>{" "}
+            <NavigateButton onClick={handleGoPage2} disabled={!buttonActive}>
+              next
+            </NavigateButton>{" "}
           </span>
         </div>
       </Group>
@@ -241,9 +244,11 @@ function Page1({ goPage2, goPage0 }) {
 
 function Page2({ goPage3, goPage1 }) {
   const [selectedOption, setSelectedOption] = useState(null);
+  const [buttonActive, setButtonActive] = useState(false);
 
   const handleOptionChange = (option) => {
     setSelectedOption(option);
+    setButtonActive(option != null);
   };
 
   const handleGoPage1 = () => {
@@ -276,7 +281,9 @@ function Page2({ goPage3, goPage1 }) {
             <NavigateButton onClick={handleGoPage1}>back</NavigateButton>{" "}
           </span>
           <span>
-            <NavigateButton onClick={handleGoPage3}>next</NavigateButton>{" "}
+            <NavigateButton onClick={handleGoPage3} disabled={!buttonActive}>
+              next
+            </NavigateButton>{" "}
           </span>
         </div>
       </Group>
@@ -286,9 +293,11 @@ function Page2({ goPage3, goPage1 }) {
 
 function Page3({ goPage4, goPage2 }) {
   const [selectedOption, setSelectedOption] = useState(null);
+  const [buttonActive, setButtonActive] = useState(false);
 
   const handleOptionChange = (option) => {
     setSelectedOption(option);
+    setButtonActive(option != null);
   };
 
   const handleGoPage2 = () => {
@@ -319,7 +328,9 @@ function Page3({ goPage4, goPage2 }) {
             <NavigateButton onClick={handleGoPage2}>back</NavigateButton>{" "}
           </span>
           <span>
-            <NavigateButton onClick={handleGoPage4}>결과보기</NavigateButton>{" "}
+            <NavigateButton onClick={handleGoPage4} disabled={!buttonActive}>
+              결과보기
+            </NavigateButton>{" "}
           </span>
         </div>
       </Group>
@@ -408,5 +419,8 @@ const NavigateButton = styled.button`
   background-color: white;
   &:hover {
     background-color: #6495ed;
+  }
+  &:disabled {
+    background-color: gray;
   }
 `;
