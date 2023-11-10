@@ -130,34 +130,38 @@ function Page0({ startGame }) {
 }
 
 function PageRandom({ animalData }) {
-  const [countdown, setCountdown] = useState(3);
   const [displayAnimal, setDisplayAnimal] = useState(null);
+  const [countdown, setCountdown] = useState(3); // 초기 카운트다운 값
 
   useEffect(() => {
-    const intervalId = setInterval(() => {
-      setCountdown((prevCountdown) => prevCountdown - 1);
+    const timer = setInterval(() => {
+      if (countdown > 0) {
+        setCountdown(countdown - 1);
+      } else {
+        clearInterval(timer);
+        const randomAnimalIndex = Math.floor(Math.random() * 18);
+        setDisplayAnimal(animalData[randomAnimalIndex].animal);
+      }
     }, 1000);
 
-    const timeoutId = setTimeout(() => {
-      clearInterval(intervalId);
-      const randomAnimalIndex = Math.floor(Math.random() * animalData.length);
-      setDisplayAnimal(animalData[randomAnimalIndex].animal);
-    }, 3000);
+    // 컴포넌트가 언마운트되면 타이머를 정리합니다.
+    return () => clearInterval(timer);
+  }, [countdown, animalData]);
 
-    return () => {
-      clearInterval(intervalId);
-      clearTimeout(timeoutId);
-    };
-  }, [animalData]);
+  const handleRetry = () => {
+    setDisplayAnimal(null);
+    setCountdown(3); // 다시하기 버튼을 누를 때 카운트를 초기화합니다.
+  };
 
   return (
-    <Group>
-      {displayAnimal !== null ? (
-        <p>{displayAnimal}</p>
+    <div>
+      {countdown > 0 ? (
+        <Group>{countdown}</Group>
       ) : (
-        <p>{countdown > 0 ? countdown : "랜덤 동물이 표시됩니다..."}</p>
+        <Group>{displayAnimal}</Group>
       )}
-    </Group>
+      <button onClick={handleRetry}>다시하기</button>
+    </div>
   );
 }
 
