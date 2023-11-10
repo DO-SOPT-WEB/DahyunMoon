@@ -8,11 +8,18 @@ function App() {
   const [showPage2, setShowPage2] = useState(false);
   const [showPage3, setShowPage3] = useState(false);
   const [showPage4, setShowPage4] = useState(false);
+  const [showPageRandom, setShowPageRandom] = useState(false);
   const [selectedOptions, setSelectedOptions] = useState([]);
 
-  const startGame = () => {
-    setShowPage0(false);
-    setShowPage1(true);
+  const startGame = (page) => {
+    // 인자에 따라 페이지 이동 처리
+    if (page === "page1") {
+      setShowPage0(false);
+      setShowPage1(true);
+    } else if (page === "pageRandom") {
+      setShowPage0(false);
+      setShowPageRandom(true);
+    }
   };
 
   const goPage1 = (option) => {
@@ -59,6 +66,7 @@ function App() {
   return (
     <>
       {showPage0 && <Page0 startGame={startGame} />}
+      {showPageRandom && <PageRandom animalData={animalData} />}
       {showPage1 && <Page1 goPage1={goPage1} />}
       {showPage2 && <Page2 goPage2={goPage2} />}
       {showPage3 && <Page3 goPage3={goPage3} />}
@@ -83,6 +91,16 @@ function Page0({ startGame }) {
     setIsButton2Active(true);
   };
 
+  const handleStartGame = () => {
+    if (isButton1Active) {
+      startGame("page1");
+    } else if (isButton2Active) {
+      startGame("pageRandom");
+    } else {
+      alert("게임을 시작하려면 옵션을 선택해주세요.");
+    }
+  };
+
   return (
     <>
       <Header>나와 닮은 동물은?</Header>
@@ -95,10 +113,15 @@ function Page0({ startGame }) {
             랜덤으로 추천
           </Question>
         </div>
-        <ClickButton onClick={startGame}>시작하기</ClickButton>
+        <ClickButton onClick={handleStartGame}>시작하기</ClickButton>
       </Group>
     </>
   );
+}
+
+function PageRandom({ animalData }) {
+  const random_animal = Math.floor(Math.random() * 18);
+  return <Group>{animalData[random_animal].animal}</Group>;
 }
 
 function Page1({ goPage1 }) {
@@ -279,7 +302,7 @@ function Page3({ goPage3 }) {
             <button>back</button>{" "}
           </span>
           <span>
-            <button onClick={handlePage3}>next</button>{" "}
+            <button onClick={handlePage3}>결과보기</button>{" "}
           </span>
         </div>
       </Group>
