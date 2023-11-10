@@ -62,7 +62,9 @@ function App() {
       {showPage1 && <Page1 goPage1={goPage1} />}
       {showPage2 && <Page2 goPage2={goPage2} />}
       {showPage3 && <Page3 goPage3={goPage3} />}
-      {showPage4 && <Page4 selectedOptions={selectedOptions} />}
+      {showPage4 && (
+        <Page4 selectedOptions={selectedOptions} animalData={animalData} />
+      )}
     </>
   );
 }
@@ -124,7 +126,7 @@ function Page1({ goPage1 }) {
             <input
               type="radio"
               name="answer"
-              value="응!!"
+              value="웅!!"
               onChange={() => handleOptionChange("응!!")}
             />{" "}
             응!!
@@ -142,7 +144,7 @@ function Page1({ goPage1 }) {
             <input
               type="radio"
               name="answer"
-              value="밖에 나가!!"
+              value="아니ㅠ"
               onChange={() => handleOptionChange("밖에 나가!!")}
             />{" "}
             밖에 나가!!
@@ -186,10 +188,10 @@ function Page2({ goPage2 }) {
             <input
               type="radio"
               name="answer"
-              value="응!!"
+              value="웅!!"
               onChange={() => handleOptionChange("응!!")}
             />{" "}
-            응!!
+            웅!!
           </Question>
           <Question>
             <input
@@ -248,7 +250,7 @@ function Page3({ goPage3 }) {
             <input
               type="radio"
               name="answer"
-              value="응!!"
+              value="웅!!"
               onChange={() => handleOptionChange("응!!")}
             />{" "}
             응!!
@@ -266,7 +268,7 @@ function Page3({ goPage3 }) {
             <input
               type="radio"
               name="answer"
-              value="아니."
+              value="아니ㅠ"
               onChange={() => handleOptionChange("아니.")}
             />{" "}
             아니.
@@ -285,9 +287,25 @@ function Page3({ goPage3 }) {
   );
 }
 
-function Page4({ selectedOptions }) {
+function Page4({ selectedOptions, animalData }) {
+  function getMatchingAnimal(selectedOptions) {
+    // 선택한 옵션 배열과 일치하는 동물 데이터 찾기
+    const matchingAnimalData = animalData.find((data) =>
+      data.answer.every((option) => selectedOptions.includes(option))
+    );
+
+    return matchingAnimalData ? matchingAnimalData.animal : "알 수 없음";
+  }
+  const matchingAnimal = getMatchingAnimal(selectedOptions);
   console.log(selectedOptions);
-  return <div>끝!</div>;
+  return (
+    <div>
+      끝!
+      <Group>
+        <p>선택한 동물: {matchingAnimal}</p>
+      </Group>
+    </div>
+  );
 }
 
 export default App;
