@@ -78,28 +78,30 @@ function App() {
   const C = "반반";
   const B = "아니ㅠ";
   const animalData = [
-    { answer: [A, A, A], animal: "고양이" },
-    { answer: [A, A, B], animal: "강아지" },
-    { answer: [A, B, A], animal: "오랑우탄" },
-    { answer: [A, B, B], animal: "쿼카" },
-    { answer: [A, C, A], animal: "토끼" },
-    { answer: [A, C, B], animal: "붕어" },
-    { answer: [B, A, A], animal: "팬더" },
-    { answer: [B, A, B], animal: "비버" },
-    { answer: [B, B, A], animal: "얼룩말" },
-    { answer: [B, B, B], animal: "돌고래" },
-    { answer: [B, C, A], animal: "쥐" },
-    { answer: [B, C, B], animal: "미어캣" },
-    { answer: [C, A, A], animal: "용" },
-    { answer: [C, A, B], animal: "기린" },
-    { answer: [C, B, A], animal: "곰" },
-    { answer: [C, B, B], animal: "펭귄" },
-    { answer: [C, C, A], animal: "사자" },
-    { answer: [C, C, B], animal: "오리" },
+    { answer: [A, A, A], animal: "강아지", imgUrl: "/img/1.png" },
+    { answer: [A, A, B], animal: "고양이", imgUrl: "/img/2.png" },
+    { answer: [A, B, A], animal: "오랑우탄", imgUrl: "/img/3.png" },
+    { answer: [A, B, B], animal: "쿼카", imgUrl: "./img/4.png" },
+    { answer: [A, C, A], animal: "토끼", imgUrl: "./img/5.png" },
+    { answer: [A, C, B], animal: "붕어", imgUrl: "./img/6.png" },
+    { answer: [B, A, A], animal: "팬더", imgUrl: "./img/7.png" },
+    { answer: [B, A, B], animal: "비버", imgUrl: "./img/8.png" },
+    { answer: [B, B, A], animal: "얼룩말", imgUrl: "./img/9.png" },
+    { answer: [B, B, B], animal: "돌고래", imgUrl: "./img/10.png" },
+    { answer: [B, C, A], animal: "쥐", imgUrl: "./img/11.png" },
+    { answer: [B, C, B], animal: "미어캣", imgUrl: "./img/12.png" },
+    { answer: [C, A, A], animal: "용", imgUrl: "./img/13.png" },
+    { answer: [C, A, B], animal: "기린", imgUrl: "./img/14.png" },
+    { answer: [C, B, A], animal: "곰", imgUrl: "./img/15.png" },
+    { answer: [C, B, B], animal: "펭귄", imgUrl: "./img/16.png" },
+    { answer: [C, C, A], animal: "사자", imgUrl: "./img/17.png" },
+    { answer: [C, C, B], animal: "오리", imgUrl: "./img/18.png" },
   ];
 
   return (
     <>
+      {" "}
+      <Header>나와 닮은 동물은?</Header>
       {showPage0 && <Page0 startGame={startGame} />}
       {showPageRandom && <PageRandom animalData={animalData} />}
       {showPage1 && <Page1 goPage0={goPage0} goPage2={goPage2} />}
@@ -142,7 +144,6 @@ function Page0({ startGame }) {
 
   return (
     <>
-      <Header>나와 닮은 동물은?</Header>
       <Group>
         <div className="question-box">
           <Question onClick={handleButton1Click} active={isButton1Active}>
@@ -161,6 +162,7 @@ function Page0({ startGame }) {
 function PageRandom({ animalData }) {
   const [displayAnimal, setDisplayAnimal] = useState(null);
   const [countdown, setCountdown] = useState(3); // 초기 카운트다운 값
+  const [displayPic, setDisplayPic] = useState("");
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -170,15 +172,16 @@ function PageRandom({ animalData }) {
         clearInterval(timer);
         const randomAnimalIndex = Math.floor(Math.random() * 18);
         setDisplayAnimal(animalData[randomAnimalIndex].animal);
+        setDisplayPic(animalData[randomAnimalIndex].imgUrl);
       }
     }, 1000);
 
-    // 컴포넌트가 언마운트되면 타이머를 정리합니다.
     return () => clearInterval(timer);
   }, [countdown, animalData]);
 
   const handleRetry = () => {
     setDisplayAnimal(null);
+    setDisplayPic("");
     setCountdown(3); // 다시하기 버튼을 누를 때 카운트를 초기화합니다.
   };
 
@@ -187,9 +190,12 @@ function PageRandom({ animalData }) {
       {countdown > 0 ? (
         <Group>{countdown}</Group>
       ) : (
-        <Group>{displayAnimal}</Group>
+        <Group>
+          <AnimalPic src={displayPic} />
+          <TextBox>너와 닮은 동물은..{displayAnimal}(이)야!!</TextBox>
+          <NavigateButton onClick={handleRetry}>다시하기</NavigateButton>
+        </Group>
       )}
-      <NavigateButton onClick={handleRetry}>다시하기</NavigateButton>
     </div>
   );
 }
@@ -218,7 +224,7 @@ function Page1({ goPage2, goPage0 }) {
     <div>
       <Header>나와 닮은 동물은?</Header>
       <Group>
-        보통 쉬는 날 집에 있어??
+        <TextBox>보통 쉬는 날 집에 있어??</TextBox>
         <div className="question-box">
           <Question
             onClick={() => {
@@ -274,7 +280,7 @@ function Page2({ goPage3, goPage1 }) {
     <div>
       <Header>나와 닮은 동물은?</Header>
       <Group>
-        물놀이 좋아해??
+        <TextBox>물놀이 좋아해??</TextBox>
         <div className="question-box">
           <Question onClick={() => handleOptionChange("웅!")}> 웅!!</Question>
           <Question onClick={() => handleOptionChange("반반")}> 반반</Question>
@@ -322,7 +328,7 @@ function Page3({ goPage4, goPage2 }) {
     <div>
       <Header>나와 닮은 동물은?</Header>
       <Group>
-        귀엽다는 말 들어본 적 있어?
+        <TextBox>귀엽다는 말 들어본 적 있어?</TextBox>
         <div className="question-box">
           <Question onClick={() => handleOptionChange("웅!")}> 응!!</Question>
           <Question onClick={() => handleOptionChange("아니ㅠ")}>
@@ -355,20 +361,23 @@ function Page4({ selectedOptions, animalData, restartPage1 }) {
 
     console.log("matchingAnimalData:", matchingAnimalData);
 
-    return matchingAnimalData ? matchingAnimalData.animal : "알 수 없음";
+    return matchingAnimalData ? matchingAnimalData : "알 수 없음";
   }
   const handleRestart = () => {
     restartPage1();
   };
-  const matchingAnimal = getMatchingAnimal(selectedOptions);
+  const matchingAnimal = getMatchingAnimal(selectedOptions).animal;
+  const matchingAnimalPic = getMatchingAnimal(selectedOptions).imgUrl;
   console.log(selectedOptions);
 
   return (
     <div>
-      끝!
       <Group>
-        <p>선택한 동물: {matchingAnimal}</p>
-        <NavigateButton onClick={handleRestart}>다시하기</NavigateButton>
+        <TextBox>너랑 닮은 동물은.. {matchingAnimal}(이)야!!</TextBox>
+        <AnimalPic src={matchingAnimalPic}></AnimalPic>
+        <div>
+          <ClickButton onClick={handleRestart}>다시하기</ClickButton>
+        </div>
       </Group>
     </div>
   );
@@ -390,6 +399,12 @@ const Header = styled.header`
   transform: translate(-50%, -50%);
   left: 50%;
   top: 2rem;
+`;
+
+const TextBox = styled.div`
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin: 0.5rem 0;
 `;
 
 const Question = styled.button`
@@ -430,4 +445,11 @@ const NavigateButton = styled.button`
   &:disabled {
     background-color: gray;
   }
+`;
+
+const AnimalPic = styled.img`
+  margin-top: 1rem;
+  width: 70%;
+  height: 70%;
+  object-fit: cover;
 `;
