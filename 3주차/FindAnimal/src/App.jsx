@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import "./App.css";
 import styled from "styled-components";
 
@@ -120,8 +120,37 @@ function Page0({ startGame }) {
 }
 
 function PageRandom({ animalData }) {
-  const random_animal = Math.floor(Math.random() * 18);
-  return <Group>{animalData[random_animal].animal}</Group>;
+  const [countdown, setCountdown] = useState(3);
+  const [displayAnimal, setDisplayAnimal] = useState(null);
+
+  useEffect(() => {
+    const intervalId = setInterval(() => {
+      setCountdown((prevCountdown) => prevCountdown - 1);
+    }, 1000);
+
+    // 3초 후에 랜덤 동물을 표시
+    const timeoutId = setTimeout(() => {
+      clearInterval(intervalId);
+      const randomAnimalIndex = Math.floor(Math.random() * animalData.length);
+      setDisplayAnimal(animalData[randomAnimalIndex].animal);
+    }, 3000);
+
+    // 컴포넌트가 언마운트되면 타이머 해제
+    return () => {
+      clearInterval(intervalId);
+      clearTimeout(timeoutId);
+    };
+  }, [animalData]);
+
+  return (
+    <Group>
+      {displayAnimal !== null ? (
+        <p>{displayAnimal}</p>
+      ) : (
+        <p>{countdown > 0 ? countdown : "랜덤 동물이 표시됩니다..."}</p>
+      )}
+    </Group>
+  );
 }
 
 function Page1({ goPage1 }) {
