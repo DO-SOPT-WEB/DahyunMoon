@@ -32,6 +32,29 @@ function App() {
     setShowPage4(true);
     setSelectedOptions([...selectedOptions, option]);
   };
+  const A = "웅!";
+  const B = "반반";
+  const C = "아니ㅠ";
+  const animalData = [
+    { answer: [A, A, A], animal: "고양이" },
+    { answer: [A, A, B], animal: "강아지" },
+    { answer: [A, B, A], animal: "오랑우탄" },
+    { answer: [A, B, B], animal: "쿼카" },
+    { answer: [A, C, A], animal: "토끼" },
+    { answer: [A, C, B], animal: "붕어" },
+    { answer: [B, A, A], animal: "팬더" },
+    { answer: [B, A, B], animal: "비버" },
+    { answer: [B, B, A], animal: "얼룩말" },
+    { answer: [B, B, B], animal: "돌고래" },
+    { answer: [B, C, A], animal: "쥐" },
+    { answer: [B, C, B], animal: "미어캣" },
+    { answer: [C, A, A], animal: "용" },
+    { answer: [C, A, B], animal: "기린" },
+    { answer: [C, B, A], animal: "곰" },
+    { answer: [C, B, B], animal: "펭귄" },
+    { answer: [C, C, A], animal: "사자" },
+    { answer: [C, C, B], animal: "오리" },
+  ];
 
   return (
     <>
