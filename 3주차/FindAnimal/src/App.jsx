@@ -220,7 +220,14 @@ function Page1({ goPage2, goPage0 }) {
       <Group>
         보통 쉬는 날 집에 있어??
         <div className="question-box">
-          <Question onClick={() => handleOptionChange("웅!")}> 응!!</Question>
+          <Question
+            onClick={() => {
+              handleOptionChange("웅!");
+            }}
+          >
+            {" "}
+            응!!
+          </Question>
           <Question onClick={() => handleOptionChange("반반")}> 반반</Question>
           <Question onClick={() => handleOptionChange("아니ㅠ")}>
             {" "}
