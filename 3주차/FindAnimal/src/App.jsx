@@ -40,8 +40,8 @@ function App() {
     setSelectedOptions([...selectedOptions, option]);
   };
   const A = "웅!";
-  const B = "반반";
-  const C = "아니ㅠ";
+  const C = "반반";
+  const B = "아니ㅠ";
   const animalData = [
     { answer: [A, A, A], animal: "고양이" },
     { answer: [A, A, B], animal: "강아지" },
@@ -165,7 +165,7 @@ function Page1({ goPage1 }) {
       alert("동물을 선택해주세요.");
     }
   };
-
+  console.log(selectedOption);
   return (
     <div>
       <Header>나와 닮은 동물은?</Header>
@@ -206,7 +206,7 @@ function Page2({ goPage2 }) {
       alert("동물을 선택해주세요.");
     }
   };
-
+  console.log(selectedOption);
   return (
     <div>
       <Header>나와 닮은 동물은?</Header>
@@ -240,14 +240,14 @@ function Page3({ goPage3 }) {
     setSelectedOption(option);
   };
 
-  const handlePage3 = () => {
+  const handlePage4 = () => {
     if (selectedOption !== null) {
       goPage3(selectedOption);
     } else {
       alert("동물을 선택해주세요.");
     }
   };
-
+  console.log(selectedOption);
   return (
     <div>
       <Header>나와 닮은 동물은?</Header>
@@ -255,7 +255,6 @@ function Page3({ goPage3 }) {
         귀엽다는 말 들어본 적 있어?
         <div className="question-box">
           <Question onClick={() => handleOptionChange("웅!")}> 응!!</Question>
-          <Question onClick={() => handleOptionChange("반반")}> 반반</Question>
           <Question onClick={() => handleOptionChange("아니ㅠ")}>
             {" "}
             아니.
@@ -266,7 +265,7 @@ function Page3({ goPage3 }) {
             <button>back</button>{" "}
           </span>
           <span>
-            <button onClick={handlePage3}>결과보기</button>{" "}
+            <button onClick={handlePage4}>결과보기</button>{" "}
           </span>
         </div>
       </Group>
@@ -276,10 +275,13 @@ function Page3({ goPage3 }) {
 
 function Page4({ selectedOptions, animalData }) {
   function getMatchingAnimal(selectedOptions) {
-    // 선택한 옵션 배열과 일치하는 동물 데이터 찾기
-    const matchingAnimalData = animalData.find((data) =>
-      data.answer.every((option) => selectedOptions.includes(option))
+    const matchingAnimalData = animalData.find(
+      (data) =>
+        data.answer.length === selectedOptions.length &&
+        data.answer.toString() === selectedOptions.toString()
     );
+
+    console.log("matchingAnimalData:", matchingAnimalData);
 
     return matchingAnimalData ? matchingAnimalData.animal : "알 수 없음";
   }
