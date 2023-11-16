@@ -3,23 +3,17 @@ import styled from "styled-components";
 import "./App.css";
 import axios from "axios";
 
-export default function Login() {
+export default function SignUp() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const [nickname, setNickname] = useState("");
 
-  const handleUserName = (e) => {
-    setUsername(e.target.value);
-  };
-
-  const handlePassword = (e) => {
-    setPassword(e.target.value);
-  };
-
-  const handleLogin = () => {
+  const handleSignup = () => {
     axios
-      .post(import.meta.env.VITE_BASE_URL + "/api/v1/members/sign-in", {
-        username: username,
-        password: password,
+      .post(import.meta.env.VITE_TEST_DATA + "/api/v1/members/", {
+        username: "moondda",
+        password: "1234",
+        nickname: "문다",
       })
       .then((response) => {
         console.log(response.data);
@@ -30,34 +24,34 @@ export default function Login() {
   };
   return (
     <MainBox>
-      <Header>Login</Header>
+      <Header>Sign Up</Header>
       <Sections>
         <Section>
           <SectionTitle>ID</SectionTitle>
           <SectionInput
+            type="text"
             value={username}
-            onChange={handleUserName}
             placeholder="아이디를 입력해주세요"
           />
         </Section>
         <Section>
           <SectionTitle>PASSWORD</SectionTitle>
           <SectionInput
+            type="text"
             value={password}
-            onChange={handlePassword}
             placeholder="비밀번호를 입력해주세요"
+          />
+        </Section>
+        <Section>
+          <SectionTitle>NICKNAME</SectionTitle>
+          <SectionInput
+            type="text"
+            value={nickname}
+            placeholder="닉네임을 입력해주세요"
           />
         </Section>
       </Sections>
 
-      <Button
-        type="submit"
-        onClick={() => {
-          handleLogin();
-        }}
-      >
-        로그인
-      </Button>
       <Button>회원가입</Button>
     </MainBox>
   );
