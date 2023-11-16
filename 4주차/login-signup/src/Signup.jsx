@@ -8,12 +8,22 @@ export default function SignUp() {
   const [password, setPassword] = useState("");
   const [nickname, setNickname] = useState("");
 
+  const handleUsername = (e) => {
+    setUsername(e.target.value);
+  };
+  const handlePassword = (e) => {
+    setPassword(e.target.value);
+  };
+  const handleNickname = (e) => {
+    setNickname(e.target.value);
+  };
+
   const handleSignup = () => {
     axios
-      .post(import.meta.env.VITE_TEST_DATA + "/api/v1/members/", {
-        username: "moondda",
-        password: "1234",
-        nickname: "문다",
+      .post(import.meta.env.VITE_BASE_URL + "/api/v1/members", {
+        username: username,
+        password: password,
+        nickname: nickname,
       })
       .then((response) => {
         console.log(response.data);
@@ -32,6 +42,7 @@ export default function SignUp() {
             type="text"
             value={username}
             placeholder="아이디를 입력해주세요"
+            onChange={handleUsername}
           />
         </Section>
         <Section>
@@ -39,6 +50,7 @@ export default function SignUp() {
           <SectionInput
             type="text"
             value={password}
+            onChange={handlePassword}
             placeholder="비밀번호를 입력해주세요"
           />
         </Section>
@@ -47,12 +59,15 @@ export default function SignUp() {
           <SectionInput
             type="text"
             value={nickname}
+            onChange={handleNickname}
             placeholder="닉네임을 입력해주세요"
           />
         </Section>
       </Sections>
 
-      <Button>회원가입</Button>
+      <Button type="submit" onClick={() => handleSignup()}>
+        회원가입
+      </Button>
     </MainBox>
   );
 }

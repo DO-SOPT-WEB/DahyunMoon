@@ -2,6 +2,7 @@ import { useState } from "react";
 import styled from "styled-components";
 import "./App.css";
 import axios from "axios";
+import { Link } from "react-router-dom";
 
 export default function Login() {
   const [username, setUsername] = useState("");
@@ -58,7 +59,9 @@ export default function Login() {
       >
         로그인
       </Button>
-      <Button>회원가입</Button>
+      <Link to="/sign-up">
+        <Button>회원가입</Button>
+      </Link>
     </MainBox>
   );
 }
