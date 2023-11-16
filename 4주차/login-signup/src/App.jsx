@@ -1,35 +1,85 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { useState } from "react";
+import styled from "styled-components";
+import "./App.css";
 
 function App() {
-  const [count, setCount] = useState(0)
-
   return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+    <MainBox>
+      <Header>Login</Header>
+      <Sections>
+        <Section>
+          <SectionTitle>ID</SectionTitle>
+          <SectionInput type="text" placeholder="아이디를 입력해주세요" />
+        </Section>
+        <Section>
+          <SectionTitle>PASSWORD</SectionTitle>
+          <SectionInput type="text" placeholder="비밀번호를 입력해주세요" />
+        </Section>
+      </Sections>
+
+      <Button>로그인</Button>
+      <Button>회원가입</Button>
+    </MainBox>
+  );
 }
 
-export default App
+export default App;
+
+const MainBox = styled.main`
+  width: 50vw;
+  height: 50vh;
+  border-radius: 1rem;
+  background-color: #fbecfb;
+
+  position: relative;
+
+  padding: 1rem 2rem;
+`;
+
+const Header = styled.header`
+  font-size: 2rem;
+  font-weight: bold;
+
+  margin: 1rem auto;
+`;
+
+const Sections = styled.section`
+  width: auto;
+  height: auto;
+
+  margin: 2rem auto;
+`;
+
+const Section = styled.section`
+  width: 80%;
+  height: 3rem;
+
+  display: flex;
+
+  margin: 1rem auto;
+`;
+
+const SectionTitle = styled.div`
+  font-weight: bold;
+  width: 30%;
+  height: 3rem;
+  text-align: left;
+  padding: 0 1rem;
+
+  line-height: 3rem;
+`;
+
+const SectionInput = styled.input`
+  width: 70%;
+`;
+
+const Button = styled.button`
+  width: 80%;
+  height: 3rem;
+
+  width: 80%;
+  height: 3rem;
+
+  margin: 0.5rem auto;
+  border: 1px solid black;
+`;
