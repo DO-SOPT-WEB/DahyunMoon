@@ -2,11 +2,13 @@ import { useState } from "react";
 import styled from "styled-components";
 import "./App.css";
 import axios from "axios";
-import { Link } from "react-router-dom";
+import { Link, Navigate, useNavigate } from "react-router-dom";
 
 export default function Login() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+
+  const navigate = useNavigate();
 
   const handleUserName = (e) => {
     setUsername(e.target.value);
@@ -23,7 +25,9 @@ export default function Login() {
         password: password,
       })
       .then((response) => {
-        console.log(response.data);
+        navigate(`/mypage/${response.data.id}`);
+
+        console.log(response.data.id);
       })
       .catch((error) => {
         console.log("An error occurred:", error.response);
