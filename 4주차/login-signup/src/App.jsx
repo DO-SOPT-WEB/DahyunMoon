@@ -1,19 +1,44 @@
 import { useState } from "react";
 import styled from "styled-components";
 import "./App.css";
+import axios from "axios";
 
 function App() {
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+
+  const handleLogin = () => {
+    axios
+      .post(import.meta.env.VITE_TEST_DATA + "/api/v1/members/sign-in", {
+        username: "moondda",
+        password: "1234",
+      })
+      .then((response) => {
+        console.log(response.data);
+      })
+      .catch((error) => {
+        console.log("An error occurred:", error.response);
+      });
+  };
   return (
     <MainBox>
       <Header>Login</Header>
       <Sections>
         <Section>
           <SectionTitle>ID</SectionTitle>
-          <SectionInput type="text" placeholder="아이디를 입력해주세요" />
+          <SectionInput
+            type="text"
+            value={username}
+            placeholder="아이디를 입력해주세요"
+          />
         </Section>
         <Section>
           <SectionTitle>PASSWORD</SectionTitle>
-          <SectionInput type="text" placeholder="비밀번호를 입력해주세요" />
+          <SectionInput
+            type="text"
+            value={password}
+            placeholder="비밀번호를 입력해주세요"
+          />
         </Section>
       </Sections>
 
