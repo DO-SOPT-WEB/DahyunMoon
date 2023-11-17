@@ -51,7 +51,7 @@ export default function SignUp() {
         navigate("../login");
       })
       .catch((error) => {
-        console.log("An error occurred");
+        console.log(error, "An error occurred");
       });
   };
 
@@ -64,7 +64,6 @@ export default function SignUp() {
         setIsExist(response.data.isExist);
         if (response.data.isExist) setButtonColor("red");
         else setButtonColor("green");
-        console.log("d");
       })
       .catch((error) => {
         console.log(error);
@@ -73,7 +72,6 @@ export default function SignUp() {
 
   useEffect(() => {
     setButtonColor("black");
-    console.log(buttonColor);
   }, [username]);
 
   useEffect(() => {

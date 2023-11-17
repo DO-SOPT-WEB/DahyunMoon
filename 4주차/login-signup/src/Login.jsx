@@ -38,13 +38,10 @@ export default function Login() {
       })
       .then((response) => {
         navigate(`/mypage/${response.data.id}`);
-
-        console.log(response.data.id);
       })
       .catch((error) => {
         setToastMessage(error.response.data.message);
         setShowToast(true);
-        console.log("An error occurred:", error.response);
       });
   };
 

@@ -16,7 +16,6 @@ export default function MyPage() {
         const response = await axios.get(
           import.meta.env.VITE_BASE_URL + `/api/v1/members/${userId}`
         );
-        console.log("response-data", response.data);
         setUsername(response.data.username);
         setNickname(response.data.nickname);
       } catch (error) {
