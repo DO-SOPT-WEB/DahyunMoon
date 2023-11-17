@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import styled from "styled-components";
 import "./App.css";
 import axios from "axios";
@@ -8,8 +8,11 @@ export default function SignUp() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [nickname, setNickname] = useState("");
+  const [passwordAgain, setPasswordAgain] = useState("");
 
   const [isExist, setIsExist] = useState(false);
+
+  const [isNotFull, setIsNotFull] = useState(true);
 
   const navigate = useNavigate();
 
@@ -18,6 +21,9 @@ export default function SignUp() {
   };
   const handlePassword = (e) => {
     setPassword(e.target.value);
+  };
+  const handlePasswordAgain = (e) => {
+    setPasswordAgain(e.target.value);
   };
   const handleNickname = (e) => {
     setNickname(e.target.value);
@@ -51,6 +57,20 @@ export default function SignUp() {
         console.log(error);
       });
   };
+
+  useEffect(() => {
+    if (
+      !isExist &&
+      password != "" &&
+      password === passwordAgain &&
+      nickname != ""
+    ) {
+      setIsNotFull(false);
+    } else {
+      setIsNotFull(true);
+    }
+  }, [isExist, password, passwordAgain, nickname]);
+
   return (
     <MainBox>
       <Header>Sign Up</Header>
@@ -71,12 +91,21 @@ export default function SignUp() {
           </SectionInputExistButton>
         </Section>
         <Section>
-          <SectionTitle>PASSWORD</SectionTitle>
+          <SectionTitle>비밀번호</SectionTitle>
           <SectionInput
             type="text"
             value={password}
             onChange={handlePassword}
             placeholder="비밀번호를 입력해주세요"
+          />
+        </Section>
+        <Section>
+          <SectionTitle>비밀번호 확인</SectionTitle>
+          <SectionInput
+            type="text"
+            value={passwordAgain}
+            onChange={handlePasswordAgain}
+            placeholder="비밀번호를 다시 한 번 입력해주세요"
           />
         </Section>
         <Section>
@@ -90,7 +119,7 @@ export default function SignUp() {
         </Section>
       </Sections>
 
-      <Button type="submit" onClick={() => handleSignup()}>
+      <Button type="submit" disabled={isNotFull} onClick={() => handleSignup()}>
         회원가입
       </Button>
     </MainBox>
@@ -163,4 +192,8 @@ const Button = styled.button`
 
   margin: 0.5rem auto;
   border: 1px solid black;
+
+  background-color: ${(props) => (props.disabled ? "#ccc" : "black")};
+  color: ${(props) => (props.disabled ? "#666" : "#fff")};
+  cursor: ${(props) => (props.disabled ? "not-allowed" : "pointer")};
 `;
