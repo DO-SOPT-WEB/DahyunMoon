@@ -4,6 +4,14 @@ import "./App.css";
 import axios from "axios";
 import { Link, Navigate, useNavigate } from "react-router-dom";
 import { createPortal } from "react-dom";
+import {
+  MainBox,
+  Header,
+  Section,
+  Sections,
+  SectionInput,
+  SectionTitle,
+} from "./style";
 
 export default function Login() {
   const [username, setUsername] = useState("");
@@ -83,61 +91,13 @@ export default function Login() {
       >
         로그인
       </Button>
-      <Link to="/sign-up">
+      <Link to="/signup">
         <Button>회원가입</Button>
       </Link>
       {createPortal(toastElement, document.body)}
     </MainBox>
   );
 }
-
-const MainBox = styled.main`
-  width: 50vw;
-  height: 50vh;
-  border-radius: 1rem;
-  background-color: #fbecfb;
-
-  position: relative;
-
-  padding: 1rem 2rem;
-`;
-
-const Header = styled.header`
-  font-size: 2rem;
-  font-weight: bold;
-
-  margin: 1rem auto;
-`;
-
-const Sections = styled.section`
-  width: auto;
-  height: auto;
-
-  margin: 2rem auto;
-`;
-
-const Section = styled.section`
-  width: 80%;
-  height: 3rem;
-
-  display: flex;
-
-  margin: 1rem auto;
-`;
-
-const SectionTitle = styled.div`
-  font-weight: bold;
-  width: 30%;
-  height: 3rem;
-  text-align: left;
-  padding: 0 1rem;
-
-  line-height: 3rem;
-`;
-
-const SectionInput = styled.input`
-  width: 70%;
-`;
 
 const Button = styled.button`
   width: 80%;
@@ -152,7 +112,7 @@ const Button = styled.button`
 
 const ToastContainer = styled.div`
   position: fixed;
-  bottom: 5rem;
+  bottom: 15rem;
   left: 50%;
   transform: translateX(-50%);
   background-color: gray;

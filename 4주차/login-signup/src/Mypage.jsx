@@ -3,6 +3,7 @@ import styled from "styled-components";
 import "./App.css";
 import axios from "axios";
 import { useParams, Link } from "react-router-dom";
+import { MainBox, Header } from "./style";
 
 export default function MyPage() {
   let { userId } = useParams();
@@ -34,30 +35,12 @@ export default function MyPage() {
           <Info>NICKNAME : {nickname}</Info>
         </InfoText>
       </Infos>
-      <Link to="../..">
-        <LogOut>로그아웃</LogOut>
+      <Link to="../../login">
+        <button>로그아웃</button>
       </Link>
     </MainBox>
   );
 }
-
-const MainBox = styled.main`
-  width: 50vw;
-  height: 50vh;
-  border-radius: 1rem;
-  background-color: #fbecfb;
-
-  position: relative;
-
-  padding: 1rem 2rem;
-`;
-
-const Header = styled.header`
-  font-size: 2rem;
-  font-weight: bold;
-
-  margin: 1rem auto;
-`;
 
 const Infos = styled.div`
   display: flex;
@@ -89,5 +72,3 @@ const Info = styled.div`
 
   line-height: 3rem;
 `;
-
-const LogOut = styled.button``;

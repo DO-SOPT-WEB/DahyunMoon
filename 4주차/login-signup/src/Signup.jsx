@@ -3,6 +3,14 @@ import styled from "styled-components";
 import "./App.css";
 import axios from "axios";
 import { Navigate, useNavigate } from "react-router-dom";
+import {
+  MainBox,
+  Header,
+  Section,
+  Sections,
+  SectionInput,
+  SectionTitle,
+} from "./style";
 
 export default function SignUp() {
   const [username, setUsername] = useState("");
@@ -13,6 +21,8 @@ export default function SignUp() {
   const [isExist, setIsExist] = useState(false);
 
   const [isNotFull, setIsNotFull] = useState(true);
+
+  const [buttonColor, setButtonColor] = useState("");
 
   const navigate = useNavigate();
 
@@ -37,8 +47,8 @@ export default function SignUp() {
         nickname: nickname,
       })
       .then((response) => {
-        console.log("회원가입 성공");
-        navigate("../");
+        alert("회원가입 성공");
+        navigate("../login");
       })
       .catch((error) => {
         console.log("An error occurred");
@@ -52,11 +62,19 @@ export default function SignUp() {
       })
       .then((response) => {
         setIsExist(response.data.isExist);
+        if (response.data.isExist) setButtonColor("red");
+        else setButtonColor("green");
+        console.log("d");
       })
       .catch((error) => {
         console.log(error);
       });
   };
+
+  useEffect(() => {
+    setButtonColor("black");
+    console.log(buttonColor);
+  }, [username]);
 
   useEffect(() => {
     if (
@@ -84,8 +102,10 @@ export default function SignUp() {
             onChange={handleUsername}
           />
           <SectionInputExistButton
-            onClick={() => handleIdisExist()}
-            style={{ backgroundColor: isExist ? "red" : "green" }}
+            onClick={() => {
+              handleIdisExist();
+            }}
+            style={{ backgroundColor: `${buttonColor} ` }}
           >
             중복체크
           </SectionInputExistButton>
@@ -126,61 +146,16 @@ export default function SignUp() {
   );
 }
 
-const MainBox = styled.main`
-  width: 50vw;
-  height: 50vh;
-  border-radius: 1rem;
-  background-color: #fbecfb;
-
-  position: relative;
-
-  padding: 1rem 2rem;
-`;
-
-const Header = styled.header`
-  font-size: 2rem;
-  font-weight: bold;
-
-  margin: 1rem auto;
-`;
-
-const Sections = styled.section`
-  width: auto;
-  height: auto;
-
-  margin: 2rem auto;
-`;
-
-const Section = styled.section`
-  width: 80%;
-  height: 3rem;
-
-  display: flex;
-
-  margin: 1rem auto;
-`;
-
-const SectionTitle = styled.div`
-  font-weight: bold;
-  width: 20%;
-  height: 3rem;
-  text-align: left;
-  padding: 0 1rem;
-
-  line-height: 3rem;
-`;
-
-const SectionInput = styled.input`
-  width: 70%;
-`;
-
 const SectionInputId = styled.input`
   width: 50%;
 `;
 
 const SectionInputExistButton = styled.button`
+  margin-left: 0.5rem;
   width: 20%;
   font-size: 0.9rem;
+  background-color: black;
+  color: white;
 `;
 
 const Button = styled.button`
