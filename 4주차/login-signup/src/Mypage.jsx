@@ -2,13 +2,13 @@ import { useEffect, useState } from "react";
 import styled from "styled-components";
 import "./App.css";
 import axios from "axios";
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 
 export default function MyPage() {
   let { userId } = useParams();
   const [username, setUsername] = useState("");
   const [nickname, setNickname] = useState("");
-  console.log(userId);
+
   useEffect(() => {
     const fetchUserInfo = async () => {
       try {
@@ -27,8 +27,16 @@ export default function MyPage() {
   return (
     <MainBox>
       <Header>MY PAGE</Header>
-      <Info>ID : {username}</Info>
-      <Info>NICKNAME : {nickname}</Info>
+      <Infos>
+        <ProfileImg src="/profile.JPG" />
+        <InfoText>
+          <Info>ID : {username}</Info>
+          <Info>NICKNAME : {nickname}</Info>
+        </InfoText>
+      </Infos>
+      <Link to="../..">
+        <LogOut>로그아웃</LogOut>
+      </Link>
     </MainBox>
   );
 }
@@ -51,10 +59,35 @@ const Header = styled.header`
   margin: 1rem auto;
 `;
 
+const Infos = styled.div`
+  display: flex;
+  width: 100%;
+  height: 50%;
+  justify-content: center;
+  align-items: center;
+`;
+
+const InfoText = styled.div`
+  display: flex;
+  flex-direction: column;
+`;
+
+const ProfileImg = styled.img`
+  width: 5rem;
+  height: 5rem;
+  border-radius: 50%;
+  border: 1px solid black;
+`;
+
 const Info = styled.div`
   font-weight: bold;
   height: 3rem;
+  width: 10rem;
   padding: 0 1rem;
+
+  text-align: left;
 
   line-height: 3rem;
 `;
+
+const LogOut = styled.button``;
