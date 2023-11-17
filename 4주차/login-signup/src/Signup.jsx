@@ -8,6 +8,8 @@ export default function SignUp() {
   const [password, setPassword] = useState("");
   const [nickname, setNickname] = useState("");
 
+  const [isExist, setIsExist] = useState(false);
+
   const handleUsername = (e) => {
     setUsername(e.target.value);
   };
@@ -32,18 +34,34 @@ export default function SignUp() {
         console.log("An error occurred:", error.response);
       });
   };
+
+  const handleIdisExist = () => {
+    axios
+      .get(import.meta.env.VITE_BASE_URL + "/api/v1/members/check", {
+        params: { username: username },
+      })
+      .then((response) => {
+        setIsExist(response.data.isExist);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
   return (
     <MainBox>
       <Header>Sign Up</Header>
       <Sections>
         <Section>
           <SectionTitle>ID</SectionTitle>
-          <SectionInput
+          <SectionInputId
             type="text"
             value={username}
             placeholder="아이디를 입력해주세요"
             onChange={handleUsername}
           />
+          <SectionInputExistButton onClick={() => handleIdisExist()}>
+            중복체크
+          </SectionInputExistButton>
         </Section>
         <Section>
           <SectionTitle>PASSWORD</SectionTitle>
@@ -108,7 +126,7 @@ const Section = styled.section`
 
 const SectionTitle = styled.div`
   font-weight: bold;
-  width: 30%;
+  width: 20%;
   height: 3rem;
   text-align: left;
   padding: 0 1rem;
@@ -118,6 +136,15 @@ const SectionTitle = styled.div`
 
 const SectionInput = styled.input`
   width: 70%;
+`;
+
+const SectionInputId = styled.input`
+  width: 50%;
+`;
+
+const SectionInputExistButton = styled.button`
+  width: 20%;
+  font-size: 0.9rem;
 `;
 
 const Button = styled.button`
