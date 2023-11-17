@@ -103,9 +103,6 @@ const Button = styled.button`
   width: 80%;
   height: 3rem;
 
-  width: 80%;
-  height: 3rem;
-
   margin: 0.5rem auto;
   border: 1px solid black;
 `;
@@ -115,8 +112,10 @@ const ToastContainer = styled.div`
   bottom: 15rem;
   left: 50%;
   transform: translateX(-50%);
+
+  padding: 1rem;
+
   background-color: gray;
   color: white;
-  padding: 1rem;
   border-radius: 0.5rem;
 `;

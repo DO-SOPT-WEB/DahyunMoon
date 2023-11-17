@@ -44,10 +44,11 @@ export default function MyPage() {
 
 const Infos = styled.div`
   display: flex;
-  width: 100%;
-  height: 50%;
   justify-content: center;
   align-items: center;
+
+  width: 100%;
+  height: 50%;
 `;
 
 const InfoText = styled.div`
@@ -58,17 +59,17 @@ const InfoText = styled.div`
 const ProfileImg = styled.img`
   width: 5rem;
   height: 5rem;
+
   border-radius: 50%;
   border: 1px solid black;
 `;
 
 const Info = styled.div`
-  font-weight: bold;
   height: 3rem;
   width: 10rem;
   padding: 0 1rem;
 
   text-align: left;
-
+  font-weight: bold;
   line-height: 3rem;
 `;

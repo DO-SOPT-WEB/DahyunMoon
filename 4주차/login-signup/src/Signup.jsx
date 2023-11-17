@@ -155,20 +155,18 @@ const SectionInputExistButton = styled.button`
   width: 20%;
   font-size: 0.9rem;
   background-color: black;
+
   color: white;
 `;
 
 const Button = styled.button`
   width: 80%;
   height: 3rem;
-
-  width: 80%;
-  height: 3rem;
-
   margin: 0.5rem auto;
-  border: 1px solid black;
 
+  border: 1px solid black;
   background-color: ${(props) => (props.disabled ? "#ccc" : "black")};
   color: ${(props) => (props.disabled ? "#666" : "#fff")};
+
   cursor: ${(props) => (props.disabled ? "not-allowed" : "pointer")};
 `;
