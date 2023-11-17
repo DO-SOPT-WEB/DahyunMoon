@@ -2,6 +2,7 @@ import { useState } from "react";
 import styled from "styled-components";
 import "./App.css";
 import axios from "axios";
+import { Navigate, useNavigate } from "react-router-dom";
 
 export default function SignUp() {
   const [username, setUsername] = useState("");
@@ -9,6 +10,8 @@ export default function SignUp() {
   const [nickname, setNickname] = useState("");
 
   const [isExist, setIsExist] = useState(false);
+
+  const navigate = useNavigate();
 
   const handleUsername = (e) => {
     setUsername(e.target.value);
@@ -28,10 +31,11 @@ export default function SignUp() {
         nickname: nickname,
       })
       .then((response) => {
-        console.log(response.data);
+        console.log("회원가입 성공");
+        navigate("../");
       })
       .catch((error) => {
-        console.log("An error occurred:", error.response);
+        console.log("An error occurred");
       });
   };
 
@@ -59,7 +63,10 @@ export default function SignUp() {
             placeholder="아이디를 입력해주세요"
             onChange={handleUsername}
           />
-          <SectionInputExistButton onClick={() => handleIdisExist()}>
+          <SectionInputExistButton
+            onClick={() => handleIdisExist()}
+            style={{ backgroundColor: isExist ? "red" : "green" }}
+          >
             중복체크
           </SectionInputExistButton>
         </Section>
