@@ -19,17 +19,6 @@ const newContent = document.querySelector(".new_content");
 const YesCancel = document.querySelector(".cancel_yes");
 const NoCancel = document.querySelector(".cancel_no");
 
-// newPrice.addEventListener("input", function () {
-//   // 쉼표를 추가한 형식으로 값을 업데이트합니다.
-//   if (!isNaN(newPrice.value) || newPrice.value == "") {
-//     let inputValue = newPrice.value;
-//     inputValue = parseInt(inputValue.replace(/,/g, ""));
-//     newPrice.value = formatWithCommas(inputValue);
-//   } else {
-//     newPrice.value = "";
-//   }
-// });
-
 newPrice.addEventListener("input", function () {
   let inputValue = newPrice.value;
   inputValue = inputValue.replace(/,/g, "");
