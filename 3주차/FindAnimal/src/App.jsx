@@ -2,6 +2,8 @@ import { useState, useEffect } from "react";
 import "./App.css";
 import styled from "styled-components";
 import Header from "./components/Header";
+import AnswerButton from "./components/AnswerButton";
+import Page0 from "./pages/page0";
 
 function App() {
   const [showPage0, setShowPage0] = useState(true);
@@ -116,47 +118,6 @@ function App() {
           restartPage1={restartPage1}
         />
       )}
-    </>
-  );
-}
-
-function Page0({ startGame }) {
-  const [isButton1Active, setIsButton1Active] = useState(false);
-  const [isButton2Active, setIsButton2Active] = useState(false);
-
-  const handleButton1Click = () => {
-    setIsButton1Active(true);
-    setIsButton2Active(false);
-  };
-
-  const handleButton2Click = () => {
-    setIsButton1Active(false);
-    setIsButton2Active(true);
-  };
-
-  const handleStartGame = () => {
-    if (isButton1Active) {
-      startGame("page1");
-    } else if (isButton2Active) {
-      startGame("pageRandom");
-    } else {
-      alert("게임을 시작하려면 옵션을 선택해주세요.");
-    }
-  };
-
-  return (
-    <>
-      <Group>
-        <div className="question-box">
-          <Question onClick={handleButton1Click} active={isButton1Active}>
-            취향대로 추천
-          </Question>
-          <Question onClick={handleButton2Click} active={isButton2Active}>
-            랜덤으로 추천
-          </Question>
-        </div>
-        <ClickButton onClick={handleStartGame}>시작하기</ClickButton>
-      </Group>
     </>
   );
 }
