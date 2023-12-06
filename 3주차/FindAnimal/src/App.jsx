@@ -6,6 +6,7 @@ import AnswerButton from "./components/AnswerButton";
 import Page0 from "./pages/page0";
 import Page1 from "./pages/Page1";
 import Page2 from "./pages/Page2";
+import Page3 from "./pages/Page3";
 
 function App() {
   const [showPage0, setShowPage0] = useState(true);
@@ -161,52 +162,6 @@ function PageRandom({ animalData }) {
           <NavigateButton onClick={handleRetry}>다시하기</NavigateButton>
         </Group>
       )}
-    </div>
-  );
-}
-
-function Page3({ goPage4, goPage2 }) {
-  const [selectedOption, setSelectedOption] = useState(null);
-  const [buttonActive, setButtonActive] = useState(false);
-
-  const handleOptionChange = (option) => {
-    setSelectedOption(option);
-    setButtonActive(option != null);
-  };
-
-  const handleGoPage2 = () => {
-    goPage2();
-  };
-  const handleGoPage4 = () => {
-    if (selectedOption !== null) {
-      goPage4(selectedOption);
-    } else {
-      alert("동물을 선택해주세요.");
-    }
-  };
-  return (
-    <div>
-      <Header header="나와 닮은 동물은?" />
-      <Group>
-        <TextBox>귀엽다는 말 들어본 적 있어?</TextBox>
-        <div className="question-box">
-          <Question onClick={() => handleOptionChange("웅!")}> 응!!</Question>
-          <Question onClick={() => handleOptionChange("아니ㅠ")}>
-            {" "}
-            아니.
-          </Question>
-        </div>
-        <div>
-          <span>
-            <NavigateButton onClick={handleGoPage2}>back</NavigateButton>{" "}
-          </span>
-          <span>
-            <NavigateButton onClick={handleGoPage4} disabled={!buttonActive}>
-              결과보기
-            </NavigateButton>{" "}
-          </span>
-        </div>
-      </Group>
     </div>
   );
 }
