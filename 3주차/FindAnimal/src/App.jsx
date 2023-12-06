@@ -5,6 +5,7 @@ import Header from "./components/Header";
 import AnswerButton from "./components/AnswerButton";
 import Page0 from "./pages/page0";
 import Page1 from "./pages/Page1";
+import Page2 from "./pages/Page2";
 
 function App() {
   const [showPage0, setShowPage0] = useState(true);
@@ -164,54 +165,6 @@ function PageRandom({ animalData }) {
   );
 }
 
-function Page2({ goPage3, goPage1 }) {
-  const [selectedOption, setSelectedOption] = useState(null);
-  const [buttonActive, setButtonActive] = useState(false);
-
-  const handleOptionChange = (option) => {
-    setSelectedOption(option);
-    setButtonActive(option != null);
-  };
-
-  const handleGoPage1 = () => {
-    goPage1();
-  };
-
-  const handleGoPage3 = () => {
-    if (selectedOption !== null) {
-      goPage3(selectedOption);
-    } else {
-      alert("동물을 선택해주세요.");
-    }
-  };
-  return (
-    <div>
-      <Header header="나와 닮은 동물은?" />
-      <Group>
-        <TextBox>물놀이 좋아해??</TextBox>
-        <div className="question-box">
-          <Question onClick={() => handleOptionChange("웅!")}> 웅!!</Question>
-          <Question onClick={() => handleOptionChange("반반")}> 반반</Question>
-          <Question onClick={() => handleOptionChange("아니ㅠ")}>
-            {" "}
-            아니ㅠ
-          </Question>
-        </div>
-        <div>
-          <span>
-            <NavigateButton onClick={handleGoPage1}>back</NavigateButton>{" "}
-          </span>
-          <span>
-            <NavigateButton onClick={handleGoPage3} disabled={!buttonActive}>
-              next
-            </NavigateButton>{" "}
-          </span>
-        </div>
-      </Group>
-    </div>
-  );
-}
-
 function Page3({ goPage4, goPage2 }) {
   const [selectedOption, setSelectedOption] = useState(null);
   const [buttonActive, setButtonActive] = useState(false);
@@ -288,12 +241,6 @@ function Page4({ selectedOptions, animalData, restartPage1 }) {
 }
 
 export default App;
-
-const TextBox = styled.div`
-  font-size: 1.5rem;
-  font-weight: bold;
-  margin: 0.5rem 0;
-`;
 
 const Question = styled.button`
   width: 15rem;
