@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import "./App.css";
 import styled from "styled-components";
+import Header from "./components/Header";
 
 function App() {
   const [showPage0, setShowPage0] = useState(true);
@@ -10,6 +11,8 @@ function App() {
   const [showPage4, setShowPage4] = useState(false);
   const [showPageRandom, setShowPageRandom] = useState(false);
   const [selectedOptions, setSelectedOptions] = useState([]);
+
+  const [pageNumber, setPageNumber] = useState(0);
 
   const startGame = (page) => {
     if (page === "page1") {
@@ -100,7 +103,7 @@ function App() {
   return (
     <>
       {" "}
-      <Header>나와 닮은 동물은?</Header>
+      <Header header="나와 닮은 동물은?" />
       {showPage0 && <Page0 startGame={startGame} />}
       {showPageRandom && <PageRandom animalData={animalData} />}
       {showPage1 && <Page1 goPage0={goPage0} goPage2={goPage2} />}
@@ -219,7 +222,7 @@ function Page1({ goPage2, goPage0 }) {
   };
   return (
     <div>
-      <Header>나와 닮은 동물은?</Header>
+      <Header header="나와 닮은 동물은?" />
       <Group>
         <TextBox>보통 쉬는 날 집에 있어??</TextBox>
         <div className="question-box">
@@ -274,7 +277,7 @@ function Page2({ goPage3, goPage1 }) {
   };
   return (
     <div>
-      <Header>나와 닮은 동물은?</Header>
+      <Header header="나와 닮은 동물은?" />
       <Group>
         <TextBox>물놀이 좋아해??</TextBox>
         <div className="question-box">
@@ -321,7 +324,7 @@ function Page3({ goPage4, goPage2 }) {
   };
   return (
     <div>
-      <Header>나와 닮은 동물은?</Header>
+      <Header header="나와 닮은 동물은?" />
       <Group>
         <TextBox>귀엽다는 말 들어본 적 있어?</TextBox>
         <div className="question-box">
@@ -376,22 +379,6 @@ function Page4({ selectedOptions, animalData, restartPage1 }) {
 }
 
 export default App;
-
-const Header = styled.header`
-  background-color: #6495ed;
-  color: white;
-  margin: 3rem 0;
-  border-radius: 0.5rem;
-  font-size: 2rem;
-  height: 4rem;
-  line-height: 4rem;
-  font-weight: bold;
-  width: 80vw;
-  position: absolute;
-  transform: translate(-50%, -50%);
-  left: 50%;
-  top: 2rem;
-`;
 
 const TextBox = styled.div`
   font-size: 1.5rem;
