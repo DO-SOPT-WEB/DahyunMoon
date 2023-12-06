@@ -4,6 +4,7 @@ import styled from "styled-components";
 import Header from "./components/Header";
 import AnswerButton from "./components/AnswerButton";
 import Page0 from "./pages/page0";
+import Page1 from "./pages/Page1";
 
 function App() {
   const [showPage0, setShowPage0] = useState(true);
@@ -159,59 +160,6 @@ function PageRandom({ animalData }) {
           <NavigateButton onClick={handleRetry}>다시하기</NavigateButton>
         </Group>
       )}
-    </div>
-  );
-}
-
-function Page1({ goPage2, goPage0 }) {
-  const [selectedOption, setSelectedOption] = useState(null);
-  const [buttonActive, setButtonActive] = useState(false);
-
-  const handleOptionChange = (option) => {
-    setSelectedOption(option);
-    setButtonActive(option !== null);
-  };
-
-  const handleGoPage2 = () => {
-    if (selectedOption !== null) {
-      goPage2(selectedOption);
-    }
-  };
-
-  const handleGoPage1 = () => {
-    goPage0();
-  };
-  return (
-    <div>
-      <Header header="나와 닮은 동물은?" />
-      <Group>
-        <TextBox>보통 쉬는 날 집에 있어??</TextBox>
-        <div className="question-box">
-          <Question
-            onClick={() => {
-              handleOptionChange("웅!");
-            }}
-          >
-            {" "}
-            응!!
-          </Question>
-          <Question onClick={() => handleOptionChange("반반")}> 반반</Question>
-          <Question onClick={() => handleOptionChange("아니ㅠ")}>
-            {" "}
-            밖에 나가!!
-          </Question>
-        </div>
-        <div>
-          <span>
-            <NavigateButton onClick={handleGoPage1}>back</NavigateButton>{" "}
-          </span>
-          <span>
-            <NavigateButton onClick={handleGoPage2} disabled={!buttonActive}>
-              next
-            </NavigateButton>{" "}
-          </span>
-        </div>
-      </Group>
     </div>
   );
 }
