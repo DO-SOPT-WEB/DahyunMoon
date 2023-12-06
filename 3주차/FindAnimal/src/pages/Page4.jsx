@@ -47,16 +47,6 @@ const TextBox = styled.div`
   margin: 0.5rem 0;
 `;
 
-const NavigateButton = styled.button`
-  background-color: white;
-  &:hover {
-    background-color: #6495ed;
-  }
-  &:disabled {
-    background-color: gray;
-  }
-`;
-
 const AnimalPic = styled.img`
   margin-top: 1rem;
   width: 70%;

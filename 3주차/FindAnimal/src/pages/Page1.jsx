@@ -44,12 +44,12 @@ function Page1({ goPage2, goPage0 }) {
         </div>
         <div>
           <span>
-            <NavigateButton onClick={handleGoPage1}>back</NavigateButton>{" "}
+            <NavigateButton onClick={handleGoPage1}>back</NavigateButton>
           </span>
           <span>
             <NavigateButton onClick={handleGoPage2} disabled={!buttonActive}>
               next
-            </NavigateButton>{" "}
+            </NavigateButton>
           </span>
         </div>
       </Group>
