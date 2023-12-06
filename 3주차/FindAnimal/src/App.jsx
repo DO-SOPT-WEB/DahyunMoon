@@ -17,7 +17,11 @@ function App() {
   const [showPageRandom, setShowPageRandom] = useState(false);
   const [selectedOptions, setSelectedOptions] = useState([]);
 
-  const [pageNumber, setPageNumber] = useState(0);
+  const goPage0 = (option) => goToPage(option, 0);
+  const goPage1 = (option) => goToPage(option, 1);
+  const goPage2 = (option) => goToPage(option, 2);
+  const goPage3 = (option) => goToPage(option, 3);
+  const goPage4 = (option) => goToPage(option, 4);
 
   const startGame = (page) => {
     if (page === "page1") {
@@ -38,49 +42,34 @@ function App() {
     setSelectedOptions([]);
   };
 
-  const goPage0 = (option) => {
-    setShowPage0(true);
-    setShowPage1(false);
-    setShowPage2(false);
-    setShowPage3(false);
-    setShowPage4(false);
-  };
-
-  const goPage1 = (option) => {
-    setShowPage0(false);
-    setShowPage1(true);
-    setShowPage2(false);
-    setShowPage3(false);
-    setShowPage4(false);
-    setSelectedOptions([...selectedOptions, option]);
-  };
-
-  const goPage2 = (option) => {
-    setShowPage0(false);
-    setShowPage1(false);
-    setShowPage2(true);
-    setShowPage4(false);
-    setShowPage3(false);
-    setSelectedOptions([...selectedOptions, option]);
-  };
-
-  const goPage3 = (option) => {
-    setShowPage0(false);
-    setShowPage1(false);
-    setShowPage2(false);
-    setShowPage3(true);
-    setShowPage4(false);
-    setSelectedOptions([...selectedOptions, option]);
-  };
-
-  const goPage4 = (option) => {
+  const goToPage = (option, page) => {
     setShowPage0(false);
     setShowPage1(false);
     setShowPage2(false);
     setShowPage3(false);
-    setShowPage4(true);
+    setShowPage4(false);
+
+    switch (page) {
+      case 0:
+        setShowPage0(true);
+        break;
+      case 1:
+        setShowPage1(true);
+        break;
+      case 2:
+        setShowPage2(true);
+        break;
+      case 3:
+        setShowPage3(true);
+        break;
+      case 4:
+        setShowPage4(true);
+        break;
+    }
+
     setSelectedOptions([...selectedOptions, option]);
   };
+
   const A = "웅!";
   const C = "반반";
   const B = "아니ㅠ";
@@ -107,7 +96,6 @@ function App() {
 
   return (
     <>
-      {" "}
       <Header header="나와 닮은 동물은?" />
       {showPage0 && <Page0 startGame={startGame} />}
       {showPageRandom && <PageRandom animalData={animalData} />}
