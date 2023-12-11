@@ -3,7 +3,7 @@ import Header from "../components/Header";
 import styled from "styled-components";
 import AnswerButton from "../components/AnswerButton";
 
-function Page1({ goPage2, goPage0 }) {
+function Page1({ goBack, goForward }) {
   const [selectedOption, setSelectedOption] = useState(null);
   const [buttonActive, setButtonActive] = useState(false);
 
@@ -12,15 +12,8 @@ function Page1({ goPage2, goPage0 }) {
     setButtonActive(option !== null);
   };
 
-  const handleGoPage2 = () => {
-    if (selectedOption !== null) {
-      goPage2(selectedOption);
-    }
-  };
+  console.log(selectedOption);
 
-  const handleGoPage1 = () => {
-    goPage0();
-  };
   return (
     <>
       <Header header="나와 닮은 동물은?" />
@@ -44,10 +37,13 @@ function Page1({ goPage2, goPage0 }) {
         </div>
         <div>
           <span>
-            <NavigateButton onClick={handleGoPage1}>back</NavigateButton>
+            <NavigateButton onClick={goBack}>back</NavigateButton>
           </span>
           <span>
-            <NavigateButton onClick={handleGoPage2} disabled={!buttonActive}>
+            <NavigateButton
+              onClick={() => goForward(selectedOption)}
+              disabled={!buttonActive}
+            >
               next
             </NavigateButton>
           </span>

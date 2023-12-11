@@ -19,6 +19,8 @@ function Page4({ selectedOptions, animalData, restartPage1 }) {
   const matchingAnimal = getMatchingAnimal(selectedOptions).animal;
   const matchingAnimalPic = getMatchingAnimal(selectedOptions).imgUrl;
 
+  console.log(selectedOptions);
+
   return (
     <div>
       <Group>

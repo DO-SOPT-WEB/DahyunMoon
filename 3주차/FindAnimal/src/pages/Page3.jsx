@@ -3,7 +3,7 @@ import Header from "../components/Header";
 import styled from "styled-components";
 import AnswerButton from "../components/AnswerButton";
 
-function Page3({ goPage4, goPage2 }) {
+function Page3({ goBack, goForward }) {
   const [selectedOption, setSelectedOption] = useState(null);
   const [buttonActive, setButtonActive] = useState(false);
 
@@ -12,16 +12,11 @@ function Page3({ goPage4, goPage2 }) {
     setButtonActive(option != null);
   };
 
-  const handleGoPage2 = () => {
-    goPage2();
+  const handleGoForward = () => {
+    // 다음 페이지로 이동할 때 선택한 옵션을 전달
+    goForward(selectedOption);
   };
-  const handleGoPage4 = () => {
-    if (selectedOption !== null) {
-      goPage4(selectedOption);
-    } else {
-      alert("동물을 선택해주세요.");
-    }
-  };
+
   return (
     <div>
       <Header header="나와 닮은 동물은?" />
@@ -39,10 +34,10 @@ function Page3({ goPage4, goPage2 }) {
         </div>
         <div>
           <span>
-            <NavigateButton onClick={handleGoPage2}>back</NavigateButton>{" "}
+            <NavigateButton onClick={goBack}>back</NavigateButton>{" "}
           </span>
           <span>
-            <NavigateButton onClick={handleGoPage4} disabled={!buttonActive}>
+            <NavigateButton onClick={handleGoForward} disabled={!buttonActive}>
               결과보기
             </NavigateButton>{" "}
           </span>
