@@ -5,7 +5,11 @@ import theme from "../style/theme";
 const ProgressBar = ({ currentPage, totalPages }) => {
   const progress = (currentPage / (totalPages - 1)) * 100;
 
-  return <St.Bar progress={progress} />;
+  return (
+    (progress === 25 || progress === 50 || progress === 75) && (
+      <St.Bar progress={progress} />
+    )
+  );
 };
 
 export default ProgressBar;

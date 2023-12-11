@@ -8,7 +8,6 @@ function Page0({ startGame }) {
   const handleButton1Click = () => {
     setIsButton1Active(true);
     setIsButton2Active(false);
-    console.log("hi");
   };
 
   const handleButton2Click = () => {

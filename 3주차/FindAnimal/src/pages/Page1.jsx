@@ -16,8 +16,6 @@ function Page1({ goBack, goForward }) {
     setButtonActive(option !== null);
   };
 
-  console.log(selectedOption);
-
   return (
     <Group>
       <TextBox>보통 쉬는 날 집에 있어??</TextBox>
