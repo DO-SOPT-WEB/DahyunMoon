@@ -9,7 +9,7 @@ function Page4({ selectedOptions, animalData, restartPage1 }) {
         data.answer.toString() === selectedOptions.toString()
     );
 
-    return matchingAnimalData ? matchingAnimalData : "알 수 없음";
+    return matchingAnimalData || "알 수 없음";
   }
   const handleRestart = () => {
     restartPage1();
