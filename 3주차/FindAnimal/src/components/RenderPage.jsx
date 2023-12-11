@@ -36,7 +36,10 @@ const RenderPage = () => {
       {showPage === 0 && <Page0 startGame={startGame} />}
       {showPage === 1 && (
         <Page1
-          goBack={() => setShowPage(0)}
+          goBack={() => {
+            setSelectedOptions((prevOptions) => prevOptions.slice(0, -1));
+            setShowPage(0);
+          }}
           goForward={(option) => {
             handleOptionSelect(option);
             setShowPage(2);
@@ -45,7 +48,10 @@ const RenderPage = () => {
       )}
       {showPage === 2 && (
         <Page2
-          goBack={() => setShowPage(1)}
+          goBack={() => {
+            setSelectedOptions((prevOptions) => prevOptions.slice(0, -1));
+            setShowPage(1);
+          }}
           goForward={(option) => {
             handleOptionSelect(option);
             setShowPage(3);
@@ -54,7 +60,10 @@ const RenderPage = () => {
       )}
       {showPage === 3 && (
         <Page3
-          goBack={() => setShowPage(2)}
+          goBack={() => {
+            setSelectedOptions((prevOptions) => prevOptions.slice(0, -1));
+            setShowPage(2);
+          }}
           goForward={(option) => {
             handleOptionSelect(option);
             setShowPage(4);
