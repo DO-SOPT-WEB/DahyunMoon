@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useCallback } from "react";
 import Page0 from "../pages/page0";
 import Page1 from "../pages/Page1";
 import Page2 from "../pages/Page2";
@@ -25,9 +25,12 @@ const RenderPage = () => {
     setSelectedOptions([]);
   };
 
-  const handleOptionSelect = (option) => {
-    setSelectedOptions((prevOptions) => [...prevOptions, option]);
-  };
+  const handleOptionSelect = useCallback(
+    (option) => {
+      setSelectedOptions((prevOptions) => [...prevOptions, option]);
+    },
+    [setSelectedOptions]
+  );
 
   const totalPages = 5;
 

@@ -25,7 +25,7 @@ function PageRandom({ animalData }) {
   const handleRetry = () => {
     setDisplayAnimal(null);
     setDisplayPic("");
-    setCountdown(3); // 다시하기 버튼을 누를 때 카운트를 초기화합니다.
+    setCountdown(3);
   };
 
   return (
