@@ -8,7 +8,6 @@ function App() {
   return (
     <ThemeProvider theme={theme}>
       <GlobalStyle />
-      <Header header="나와 닮은 동물은?" />
       {RenderPage()}
     </ThemeProvider>
   );

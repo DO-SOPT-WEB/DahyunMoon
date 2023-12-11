@@ -1,4 +1,5 @@
 import { useState, useCallback } from "react";
+import Header from "./Header";
 import Page0 from "../pages/page0";
 import Page1 from "../pages/Page1";
 import Page2 from "../pages/Page2";
@@ -20,6 +21,11 @@ const RenderPage = () => {
     }
   };
 
+  const restartPage0 = () => {
+    setShowPage(0);
+    setSelectedOptions([]);
+  };
+
   const restartPage1 = () => {
     setShowPage(1);
     setSelectedOptions([]);
@@ -36,6 +42,11 @@ const RenderPage = () => {
 
   return (
     <div>
+      <Header
+        header="나와 닮은 동물은?"
+        restartPage0={restartPage0}
+        showPage={showPage}
+      />
       {showPage === 0 && <Page0 startGame={startGame} />}
       {showPage === 1 && (
         <Page1
