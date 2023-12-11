@@ -11,10 +11,11 @@ const ProgressBar = ({ currentPage, totalPages }) => {
 export default ProgressBar;
 
 const St = {
-  Bar: styled.div`
+  Bar: styled.hr`
     background-color: ${theme.colors.darkBlue};
     margin: 2rem 0;
     border-radius: 0.5rem;
     width: ${(props) => props.progress}%;
+    height: 1.5rem;
   `,
 };
