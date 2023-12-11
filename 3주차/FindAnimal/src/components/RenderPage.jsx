@@ -67,9 +67,8 @@ const RenderPage = () => {
       />
       {showPage === 0 && <Page0 startGame={startGame} />}
 
-      {showPage === 1 && showCurrentPage(navigateProps)}
-      {showPage === 2 && showCurrentPage(navigateProps)}
-      {showPage === 3 && showCurrentPage(navigateProps)}
+      {(showPage === 1 || showPage === 2 || showPage === 3) &&
+        showCurrentPage(navigateProps)}
 
       {showPage === 4 && (
         <Page4
