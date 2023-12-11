@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { TextBox, Group, NavigateButton } from "../style/commonStyle";
 
-function Page4({ selectedOptions, animalData, restartPage }) {
+function Page4({ selectedOptions, animalData, restartPage1 }) {
   function getMatchingAnimal(selectedOptions) {
     const matchingAnimalData = animalData.find(
       (data) =>
@@ -12,7 +12,7 @@ function Page4({ selectedOptions, animalData, restartPage }) {
     return matchingAnimalData || "알 수 없음";
   }
   const handleRestart = () => {
-    restartPage(1);
+    restartPage1();
   };
   const matchingAnimal = getMatchingAnimal(selectedOptions).animal;
   const matchingAnimalPic = getMatchingAnimal(selectedOptions).imgUrl;

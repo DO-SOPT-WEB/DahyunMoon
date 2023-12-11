@@ -21,8 +21,13 @@ const RenderPage = () => {
     }
   };
 
-  const restartPage = (page) => {
-    setShowPage(page);
+  const restartPage0 = () => {
+    setShowPage(0);
+    setSelectedOptions([]);
+  };
+
+  const restartPage1 = () => {
+    setShowPage(1);
     setSelectedOptions([]);
   };
 
@@ -57,7 +62,7 @@ const RenderPage = () => {
     <div>
       <Header
         header="나와 닮은 동물은?"
-        restartPage0={restartPage}
+        restartPage0={restartPage0}
         showPage={showPage}
       />
       {showPage === 0 && <Page0 startGame={startGame} />}
@@ -70,7 +75,7 @@ const RenderPage = () => {
         <Page4
           selectedOptions={selectedOptions}
           animalData={ANIMAL_DATA}
-          restartPage1={restartPage}
+          restartPage1={restartPage1}
         />
       )}
       {showPage === 5 && (

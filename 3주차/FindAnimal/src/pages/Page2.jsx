@@ -40,7 +40,7 @@ function Page2({ goBack, goForward }) {
         </QuestionBox>
         <div>
           <span>
-            <NavigateButton onClick={goBack}>back</NavigateButton>{" "}
+            <NavigateButton onClick={goBack}>back</NavigateButton>
           </span>
           <span>
             <NavigateButton onClick={handleGoForward} disabled={!buttonActive}>
