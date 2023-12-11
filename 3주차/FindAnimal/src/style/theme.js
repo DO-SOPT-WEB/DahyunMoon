@@ -1,10 +1,11 @@
 const colors = {
   white: "#FFFFF0",
   darkBlue: "#6495ed",
+  gray: "808080",
 };
 
 const font = {
-  fontFamily: "UhBeeSe_hyun",
+  fontFamily: "Mina",
 };
 
 const theme = {

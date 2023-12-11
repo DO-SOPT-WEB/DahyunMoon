@@ -6,6 +6,7 @@ import Page3 from "../pages/Page3";
 import Page4 from "../pages/Page4";
 import PageRandom from "../pages/PageRandom";
 import { ANIMAL_DATA } from "../constants/data";
+import ProgressBar from "./ProgressBar";
 
 const RenderPage = () => {
   const [showPage, setShowPage] = useState(0);
@@ -28,11 +29,12 @@ const RenderPage = () => {
     setSelectedOptions((prevOptions) => [...prevOptions, option]);
   };
 
-  switch (showPage) {
-    case 0:
-      return <Page0 startGame={startGame} />;
-    case 1:
-      return (
+  const totalPages = 5;
+
+  return (
+    <div>
+      {showPage === 0 && <Page0 startGame={startGame} />}
+      {showPage === 1 && (
         <Page1
           goBack={() => setShowPage(0)}
           goForward={(option) => {
@@ -40,9 +42,8 @@ const RenderPage = () => {
             setShowPage(2);
           }}
         />
-      );
-    case 2:
-      return (
+      )}
+      {showPage === 2 && (
         <Page2
           goBack={() => setShowPage(1)}
           goForward={(option) => {
@@ -50,9 +51,8 @@ const RenderPage = () => {
             setShowPage(3);
           }}
         />
-      );
-    case 3:
-      return (
+      )}
+      {showPage === 3 && (
         <Page3
           goBack={() => setShowPage(2)}
           goForward={(option) => {
@@ -60,26 +60,24 @@ const RenderPage = () => {
             setShowPage(4);
           }}
         />
-      );
-    case 4:
-      return (
+      )}
+      {showPage === 4 && (
         <Page4
           selectedOptions={selectedOptions}
           animalData={ANIMAL_DATA}
           restartPage1={restartPage1}
         />
-      );
-    case 5:
-      return (
+      )}
+      {showPage === 5 && (
         <PageRandom
           selectedOptions={selectedOptions}
           animalData={ANIMAL_DATA}
           onOptionSelect={handleOptionSelect}
         />
-      );
-    default:
-      return null;
-  }
+      )}
+      <ProgressBar currentPage={showPage} totalPages={totalPages} />
+    </div>
+  );
 };
 
 export default RenderPage;

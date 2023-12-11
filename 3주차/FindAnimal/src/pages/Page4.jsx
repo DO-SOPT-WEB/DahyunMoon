@@ -1,6 +1,5 @@
 import styled from "styled-components";
-import TextBox from "../components/common/TextBox";
-import Group from "../components/common/Group";
+import { TextBox, Group, NavigateButton } from "../style/commonStyle";
 
 function Page4({ selectedOptions, animalData, restartPage1 }) {
   function getMatchingAnimal(selectedOptions) {
@@ -26,7 +25,7 @@ function Page4({ selectedOptions, animalData, restartPage1 }) {
         <TextBox>너랑 닮은 동물은.. {matchingAnimal}(이)야!!</TextBox>
         <AnimalPic src={matchingAnimalPic}></AnimalPic>
         <div>
-          <ClickButton onClick={handleRestart}>다시하기</ClickButton>
+          <NavigateButton onClick={handleRestart}>다시하기</NavigateButton>
         </div>
       </Group>
     </div>
@@ -40,13 +39,4 @@ const AnimalPic = styled.img`
   width: 70%;
   height: 70%;
   object-fit: cover;
-`;
-
-const ClickButton = styled.button`
-  background-color: #6495ed;
-  color: white;
-  margin: 0 1rem;
-  width: 8rem;
-  height: 3rem;
-  font-weight: bold;
 `;

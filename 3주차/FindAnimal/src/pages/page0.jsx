@@ -1,7 +1,5 @@
 import { useState } from "react";
-import AnswerButton from "../components/common/AnswerButton";
-import styled from "styled-components";
-import Group from "../components/common/Group";
+import { AnswerButton, Group, NavigateButton } from "../style/commonStyle";
 
 function Page0({ startGame }) {
   const [isButton1Active, setIsButton1Active] = useState(false);
@@ -42,18 +40,9 @@ function Page0({ startGame }) {
           active={isButton2Active}
         />
       </div>
-      <ClickButton onClick={handleStartGame}>시작하기</ClickButton>
+      <NavigateButton onClick={handleStartGame}>시작하기</NavigateButton>
     </Group>
   );
 }
 
 export default Page0;
-
-const ClickButton = styled.button`
-  background-color: #6495ed;
-  color: white;
-  margin: 0 1rem;
-  width: 8rem;
-  height: 3rem;
-  font-weight: bold;
-`;

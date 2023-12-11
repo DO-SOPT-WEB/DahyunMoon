@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react";
 import styled from "styled-components";
-import TextBox from "../components/common/TextBox";
-import Group from "../components/common/Group";
+import { TextBox, Group, NavigateButton } from "../style/commonStyle";
 
 function PageRandom({ animalData }) {
   const [displayAnimal, setDisplayAnimal] = useState(null);
@@ -45,16 +44,6 @@ function PageRandom({ animalData }) {
 }
 
 export default PageRandom;
-
-const NavigateButton = styled.button`
-  background-color: white;
-  &:hover {
-    background-color: #6495ed;
-  }
-  &:disabled {
-    background-color: gray;
-  }
-`;
 
 const AnimalPic = styled.img`
   margin-top: 1rem;

@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import theme from "../../style/theme";
+import theme from "../style/theme";
 
 const Header = ({ header }) => {
   return <St.Header>{header}</St.Header>;
@@ -19,9 +19,5 @@ const St = {
     line-height: 4rem;
     font-weight: bold;
     width: 80vw;
-    position: absolute;
-    transform: translate(-50%, -50%);
-    left: 50%;
-    top: 2rem;
   `,
 };
