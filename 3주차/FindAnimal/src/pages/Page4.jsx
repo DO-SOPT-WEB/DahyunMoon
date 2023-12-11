@@ -1,7 +1,6 @@
-import { useState } from "react";
-import Header from "../components/Header";
 import styled from "styled-components";
-import AnswerButton from "../components/AnswerButton";
+import TextBox from "../components/common/TextBox";
+import Group from "../components/common/Group";
 
 function Page4({ selectedOptions, animalData, restartPage1 }) {
   function getMatchingAnimal(selectedOptions) {
@@ -35,19 +34,6 @@ function Page4({ selectedOptions, animalData, restartPage1 }) {
 }
 
 export default Page4;
-
-const Group = styled.div`
-  background-color: #d1eaf0;
-  width: 80vw;
-  height: 60vh;
-  border-radius: 0.5rem;
-`;
-
-const TextBox = styled.div`
-  font-size: 1.5rem;
-  font-weight: bold;
-  margin: 0.5rem 0;
-`;
 
 const AnimalPic = styled.img`
   margin-top: 1rem;

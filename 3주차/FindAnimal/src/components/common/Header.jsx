@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import theme from "../../style/theme";
 
 const Header = ({ header }) => {
   return <St.Header>{header}</St.Header>;
@@ -9,8 +10,8 @@ export default Header;
 
 const St = {
   Header: styled.header`
-    background-color: #6495ed;
-    color: white;
+    background-color: ${theme.colors.darkBlue};
+    color: ${theme.colors.white};
     margin: 3rem 0;
     border-radius: 0.5rem;
     font-size: 2rem;

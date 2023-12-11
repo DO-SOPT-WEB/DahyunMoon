@@ -1,6 +1,7 @@
 import { useState } from "react";
-import AnswerButton from "../components/AnswerButton";
+import AnswerButton from "../components/common/AnswerButton";
 import styled from "styled-components";
+import Group from "../components/common/Group";
 
 function Page0({ startGame }) {
   const [isButton1Active, setIsButton1Active] = useState(false);
@@ -47,13 +48,6 @@ function Page0({ startGame }) {
 }
 
 export default Page0;
-
-const Group = styled.div`
-  background-color: #d1eaf0;
-  width: 80vw;
-  height: 60vh;
-  border-radius: 0.5rem;
-`;
 
 const ClickButton = styled.button`
   background-color: #6495ed;

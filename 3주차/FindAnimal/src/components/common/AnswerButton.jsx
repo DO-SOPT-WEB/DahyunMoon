@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import theme from "../../style/theme";
 
 const AnswerButton = ({ answer, onClick, active }) => {
   return (
@@ -19,7 +20,7 @@ const St = {
     font-size: 1.5rem;
     font-weight: bold;
     &:hover {
-      background-color: #6495ed;
+      background-color: ${theme.colors.darkBlue};
     }
   `,
 };

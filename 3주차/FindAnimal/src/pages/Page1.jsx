@@ -1,7 +1,9 @@
 import { useState } from "react";
-import Header from "../components/Header";
+import Header from "../components/common/Header";
 import styled from "styled-components";
-import AnswerButton from "../components/AnswerButton";
+import AnswerButton from "../components/common/AnswerButton";
+import TextBox from "../components/common/TextBox";
+import Group from "../components/common/Group";
 
 function Page1({ goBack, goForward }) {
   const [selectedOption, setSelectedOption] = useState(null);
@@ -54,19 +56,6 @@ function Page1({ goBack, goForward }) {
 }
 
 export default Page1;
-
-const Group = styled.div`
-  background-color: #d1eaf0;
-  width: 80vw;
-  height: 60vh;
-  border-radius: 0.5rem;
-`;
-
-const TextBox = styled.div`
-  font-size: 1.5rem;
-  font-weight: bold;
-  margin: 0.5rem 0;
-`;
 
 const NavigateButton = styled.button`
   background-color: white;
