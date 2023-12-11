@@ -3,12 +3,12 @@ import styled from "styled-components";
 import theme from "../style/theme";
 import { NavigateButton } from "../style/commonStyle";
 
-const Header = ({ header, restartPage0, showPage }) => {
+const Header = ({ header, restartPage, showPage }) => {
   return (
     <St.Header>
       <St.Text>{header} </St.Text>{" "}
       {showPage !== 0 && (
-        <NavigateButton onClick={restartPage0}>처음으로</NavigateButton>
+        <NavigateButton onClick={() => restartPage(1)}>처음으로</NavigateButton>
       )}
     </St.Header>
   );

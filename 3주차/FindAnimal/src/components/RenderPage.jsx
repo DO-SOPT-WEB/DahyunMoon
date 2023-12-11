@@ -21,13 +21,8 @@ const RenderPage = () => {
     }
   };
 
-  const restartPage0 = () => {
-    setShowPage(0);
-    setSelectedOptions([]);
-  };
-
-  const restartPage1 = () => {
-    setShowPage(1);
+  const restartPage = (page) => {
+    setShowPage(page);
     setSelectedOptions([]);
   };
 
@@ -40,55 +35,42 @@ const RenderPage = () => {
 
   const totalPages = 5;
 
+  const allPage = [Page0, Page1, Page2, Page3, Page4, PageRandom];
+
+  const navigateProps = {
+    goBack: () => {
+      setSelectedOptions((prevOptions) => prevOptions.slice(0, -1));
+      setShowPage(showPage - 1);
+    },
+    goForward: (option) => {
+      handleOptionSelect(option);
+      setShowPage(showPage + 1);
+    },
+  };
+
+  const showCurrentPage = (props) => {
+    const PageComponent = allPage[showPage];
+    return <PageComponent {...props} />;
+  };
+
   return (
     <div>
       <Header
         header="나와 닮은 동물은?"
-        restartPage0={restartPage0}
+        restartPage0={restartPage}
         showPage={showPage}
       />
       {showPage === 0 && <Page0 startGame={startGame} />}
-      {showPage === 1 && (
-        <Page1
-          goBack={() => {
-            setSelectedOptions((prevOptions) => prevOptions.slice(0, -1));
-            setShowPage(0);
-          }}
-          goForward={(option) => {
-            handleOptionSelect(option);
-            setShowPage(2);
-          }}
-        />
-      )}
-      {showPage === 2 && (
-        <Page2
-          goBack={() => {
-            setSelectedOptions((prevOptions) => prevOptions.slice(0, -1));
-            setShowPage(1);
-          }}
-          goForward={(option) => {
-            handleOptionSelect(option);
-            setShowPage(3);
-          }}
-        />
-      )}
-      {showPage === 3 && (
-        <Page3
-          goBack={() => {
-            setSelectedOptions((prevOptions) => prevOptions.slice(0, -1));
-            setShowPage(2);
-          }}
-          goForward={(option) => {
-            handleOptionSelect(option);
-            setShowPage(4);
-          }}
-        />
-      )}
+
+      {showPage === 1 && showCurrentPage(navigateProps)}
+      {showPage === 2 && showCurrentPage(navigateProps)}
+      {showPage === 3 && showCurrentPage(navigateProps)}
+
       {showPage === 4 && (
         <Page4
           selectedOptions={selectedOptions}
           animalData={ANIMAL_DATA}
-          restartPage1={restartPage1}
+          restartPage1={restartPage}
         />
       )}
       {showPage === 5 && (
