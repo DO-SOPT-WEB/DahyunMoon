@@ -31,7 +31,7 @@ function PageRandom({ animalData }) {
   return (
     <div>
       {countdown > 0 ? (
-        <Group>{countdown}</Group>
+        <CountContainer>{countdown}</CountContainer>
       ) : (
         <Group>
           <AnimalPic src={displayPic} />
@@ -50,4 +50,25 @@ const AnimalPic = styled.img`
   width: 70%;
   height: 70%;
   object-fit: cover;
+`;
+
+const CountContainer = styled.div`
+  display: inline-block;
+  transform-origin: center;
+  padding: 0 0.5rem;
+  color: #2aff29;
+
+  @keyframes animate {
+    0% {
+      transform: scale(1);
+    }
+    50% {
+      transform: scale(1.5);
+    }
+    100% {
+      transform: scale(1);
+    }
+  }
+
+  animation: animate 1s infinite;
 `;
