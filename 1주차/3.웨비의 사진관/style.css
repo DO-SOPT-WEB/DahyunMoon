@@ -5,7 +5,9 @@ html {
 body {
   font-weight: bold;
   background-color: #ecffdc;
+
   margin: 0;
+
 }
 
 a {
@@ -56,6 +58,7 @@ li {
   height: 28rem;
   align-items: center;
   position: relative;
+
 }
 
 /* ::-webkit-scrollbar {
@@ -146,6 +149,7 @@ li {
   width: 70%;
   text-align: center;
   justify-content: center;
+
   gap: 0.5rem;
   margin: 1rem auto;
 }
@@ -176,7 +180,9 @@ li {
 }
 
 .img-portugal-sub div {
+
   width: 12rem;
+
   height: 20rem;
   flex-grow: 1;
   margin: 0 auto;
@@ -244,6 +250,7 @@ footer {
   font-size: 2.5rem;
 }
 
+
 .more-button {
   border: 1px solid black;
   cursor: pointer;
@@ -275,4 +282,5 @@ footer {
   font-weight: bold;
   color: mediumaquamarine;
   cursor: pointer;
+
 }
