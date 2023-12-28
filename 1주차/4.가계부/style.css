@@ -1,78 +1,96 @@
 body {
-  border: 0;
+  margin: 0;
+  height: 100vh;
+  position: relative;
+  overflow: hidden;
 }
 
-header {
+.main_header {
   width: 100%;
-  height: 50px;
-  line-height: 50px; /*글씨가 세로 기준 가운데에 오게*/
+  height: 3rem;
+  line-height: 3rem;
+  /*글씨가 세로 기준 가운데에 오게*/
   text-align: center; /*글씨가 가로 기준 가운데에 오게*/
-  font-size: 25px;
+  font-size: 1.5rem;
   font-weight: bold;
   background-color: bisque;
 }
 
 .my-account {
-  height: 150px;
+  height: 20%;
+  margin: 0.5rem 0.5rem;
   display: flex;
   align-items: center;
 }
 
 .my-account .inner {
-  height: 110px;
+  height: 6rem;
   width: 80%;
   margin: 0 auto; /*박스 가로 중앙정렬 */
   background-color: bisque;
-  border-radius: 30px;
+  border-radius: 1.7rem;
   text-align: center; /*글씨 가운데 정렬*/
-  border: 5px solid salmon;
-  padding: 5px;
+  border: 0.3rem solid salmon;
+  padding: 0.3rem;
 }
 
 .inner-1 {
-  margin-top: 3px;
-  line-height: 30px;
-  font-size: 15px;
+  height: 20%;
+  margin-top: 0.3rem;
+  font-size: 1rem;
   font-weight: bold;
 }
 
-.inner-2 {
-  line-height: 60px;
-  font-size: 30px;
+.total {
+  height: 50%;
+  line-height: 3rem;
+  font-size: 1.5rem;
   font-weight: bold;
 }
 
 .inner-3 {
+  height: 30%;
   display: flex;
   justify-content: space-around;
 }
 
+.income {
+  color: red;
+}
+
+.outcome {
+  color: blue;
+}
+
 .list-header-1 {
-  height: 35px;
-  line-height: 35px;
-  font-size: 18px;
+  height: 2rem;
+  line-height: 2rem;
+  font-size: 1.2rem;
   font-weight: bold;
   text-align: center;
+  margin: 0.5rem 0;
 }
 
 .list-header-2 {
   display: flex;
-  margin: 0 15px;
-  height: 35px;
-  line-height: 35px;
+  justify-content: center;
+  margin: 1rem 1rem;
+  height: 2rem;
+  line-height: 2rem;
 }
 
 .list-header-2 .title {
-  width: 60%;
+  width: 50%;
   font-weight: bold;
 }
 
 .list-header-2 .button {
   width: 20%;
-  border-radius: 5px;
-  color: white;
-  background-color: salmon;
-  margin: 0 5px;
+  border-radius: 0.4rem;
+  color: salmon;
+  background-color: bisque;
+  border: 0.1rem solid salmon;
+  margin: 0 0.4rem;
   text-align: center;
 }
 
@@ -80,63 +98,255 @@ header {
   display: flex;
   flex-direction: column;
   align-items: center;
-  height: 300px;
-  padding: 10px 0;
+  position: relative;
+  height: 22rem;
+  width: 100vw;
   overflow-y: scroll;
 }
 
-.list-real ul {
+.list-real ul:not(.x) {
   list-style-type: none;
 }
 
+.x {
+  position: absolute;
+  right: 8%;
+  border: none;
+  background: none;
+  cursor: pointer;
+  font-size: large;
+}
+
 .list-add {
-  height: 50px;
+  height: 8%;
 }
 
 .list-indiv {
   display: flex;
   align-items: center;
+  position: relative;
   flex-shrink: 0; /*크기 자동조정 안되게 */
-  width: 300px;
-  height: 50px;
+  width: 80%;
+  height: 3rem;
   background-color: bisque;
-  border: 1px solid salmon;
-  border-radius: 15px;
-  margin: 10px 0;
-  padding: 0 3%;
+  border: 0.15rem solid salmon;
+  border-radius: 1rem;
+  margin: 0.8rem 0;
+  padding: 0 1rem;
 }
 
 .list-indiv .category {
-  font-size: 13px;
+  font-size: 1rem;
   width: 10%;
 }
 .list-indiv .content {
   width: 55%;
-  padding-left: 5%;
+  padding-left: 1rem;
   font-weight: bold;
+  margin-right: 1rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  max-width: 50%;
 }
 .list-indiv .price {
-  font-size: 14px;
+  font-size: 0.9rem;
   width: 25%;
   color: blue;
 }
 
 .x {
-  align-self: flex-start;
+  position: absolute;
+  top: 0;
+  right: 0.5rem;
 }
 
 .list-add {
+  position: absolute;
+  bottom: 0%;
+  width: 100%;
   display: flex;
   justify-content: center;
   background-color: gainsboro;
 }
 
-.list-add .button {
+.add_list {
   height: 100%;
-  line-height: 50px;
-  width: 20%;
-  border-radius: 20px;
-  font-size: 40px;
+  width: 15%;
+  border-radius: 1rem;
+  font-size: 2rem;
   text-align: center;
   background-color: salmon;
+}
+
+.category_list {
+  position: absolute;
+  right: 0%;
+  background-color: salmon;
+  border-radius: 1rem;
+  font-size: 2rem;
+  width: 15%;
+  height: 100%;
+}
+
+.return_home {
+  position: absolute;
+  right: 0%;
+  background-color: salmon;
+  border-radius: 1rem;
+  font-size: 2rem;
+  width: 15%;
+  height: 100%;
+  display: none;
+}
+
+.modal_header {
+  height: 2rem;
+  line-height: 2rem;
+  font-size: 1.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.add_modal {
+  position: absolute;
+  width: 100%;
+  height: 24rem;
+  background-color: bisque;
+  text-align: center;
+  transform: translateY(100%);
+  transition: transform 0.3s linear;
+  padding: 0.7rem 0;
+  border-top-right-radius: 2rem;
+  border-top-left-radius: 2rem;
+  z-index: 999;
+}
+
+.add_modal ul {
+  list-style-type: none;
+  text-align: left;
+  height: 60%;
+}
+
+.add_modal li {
+  margin: 0.7rem 0;
+}
+
+.add_modal button {
+  width: 6rem;
+  height: 2rem;
+}
+
+.add_modal input {
+  height: 1.5rem;
+  width: 80%;
+}
+
+.add_modal select {
+  width: 80%;
+  font-size: 1rem;
+}
+
+/* 체크박스를 숨깁니다. */
+.button input[type="checkbox"] {
+  display: none;
+}
+
+/* 체크박스가 체크되었을 때, 레이블에 스타일을 적용합니다. */
+.button input[type="checkbox"]:checked + label {
+  color: salmon; /* 원하는 색깔로 변경하세요. */
+  font-weight: bold;
+}
+
+.incomeModalButton {
+  background: salmon;
+}
+
+.outcomeModalButton {
+  background: white;
+}
+
+.add_modal button {
+  border-radius: 3rem;
+}
+
+.add_modal * {
+  font-weight: bold;
+}
+
+.cancel_modal {
+  position: absolute;
+  display: none;
+  transform-origin: center;
+  transform: translate(50%, 0);
+  z-index: 999;
+  background-color: salmon;
+}
+
+.modal-background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5); /* 반투명 배경 */
+  display: none;
+  z-index: 990;
+}
+
+.category_page {
+  display: none;
+  width: 100vw;
+}
+
+.category_header {
+  font-size: 1rem;
+}
+
+.home {
+  display: block;
+}
+
+.category_box {
+  background-color: bisque;
+  height: 9rem;
+  width: 100%;
+}
+
+.each_category {
+  display: flex;
+  flex-direction: column;
+  align-items: left;
+  padding: 0 2rem;
+  margin: 1rem 0;
+}
+
+.category_header {
+  width: 70%;
+  font-weight: bold;
+}
+
+#newCategoryInput,
+#newCategoryOutput {
+  width: 80%;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 2rem;
+  margin: 0 1rem;
+}
+
+.category_ul {
+  display: flex;
+  justify-content: center;
+  padding: 0;
+}
+
+.category_li {
+  list-style-type: none;
+  margin: 0 1rem;
+  background-color: salmon;
+  border-radius: 2rem;
+  width: 4rem;
+  height: 2.5rem;
+  line-height: 2.5rem;
+  text-align: center;
 }

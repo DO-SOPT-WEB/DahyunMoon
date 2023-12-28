@@ -1,75 +1,92 @@
 <!DOCTYPE html>
 <html lang="ko">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./style.css">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./style.css" />
     <title>가계부</title>
-</head>
-<body>
-    <header>다현이의 가계부</header>
-    <div class="my-account">
+  </head>
+  <body>
+    <div class="home">
+      <header class="main_header">다현이의 가계부</header>
+      <div class="my-account">
         <div class="inner">
-            <div class="inner-1">나의 자산</div>
-            <div class="inner-2">2000723</div>
-            <div class="inner-3">
-                <div style="color: red;">+30000</div>
-                <div style="color:blue">-500000</div>
-            </div>
+          <div class="inner-1">나의 자산</div>
+          <div class="total"></div>
+          <div class="inner-3">
+            <div class="income"></div>
+            <div class="outcome"></div>
+          </div>
         </div>
-    </div>
-    <div class="list-header-1"> < 10월 1일 > </div>
-    <div class="list-header-2">
+      </div>
+      <div class="list-header-1">< 10월 1일 ></div>
+      <div class="cancel_modal">
+        삭제하시겠습니까?
+        <button class="cancel_yes">예</button>
+        <button class="cancel_no">아니오</button>
+      </div>
+      <div class="list-header-2">
         <div class="title">내역 리스트</div>
         <div class="button">
-          <input type="checkbox" checked>수입</input>  <!-- checked로 default -->
-          </div>
-            <div class="button">
-                <input type="checkbox" checked>지출</input>
-            </div>
+          <input type="checkbox" id="incomeCheckbox" value="income" checked />
+          <label for="incomeCheckbox">수입</label>
+        </div>
+        <div class="button">
+          <input type="checkbox" id="outcomeCheckbox" value="outcome" checked />
+          <label for="outcomeCheckbox">지출</label>
+        </div>
+      </div>
+      <section class="list-real"></section>
     </div>
-    <section class="list-real">
-
-        <ul class="list-indiv">
-        <li class="category">식비</li>
-        <li class="content">버거킹 문정역</li>
-        <li class="price">-10800</li>
-        <li class="x">x</li>
-        </ul>
-
-        <ul class="list-indiv">
-            <li class="category">취미</li>
-            <li class="content">포토그레이강남2호첨</li>
-            <li class="price">-5000</li>
-            <li class="x">x</li>
-        </ul>
-
-        <ul class="list-indiv">
-                <li class="category">식비</li>
-                <li class="content">내가찜한닭</li>
-                <li class="price">-18000</li>
-                <li class="x">x</li>
-        </ul>
-
-
-        <ul class="list-indiv">
-                    <li class="category">월급</li>
-                    <li class="content">꼰떼넨떼</li>
-                    <li class="price" style="color: red;">+7000000</li>
-                    <li class="x">x</li>
-        </ul>
-
-        <ul class="list-indiv">
-            <li class="category">취미</li>
-            <li class="content">인터파크</li>
-            <li class="price">-110000</li>
-            <li class="x">x</li>
-        </ul>
-
-    </section>
+    <div class="category_page">
+      <header class="main_header">카테고리 관리</header>
+      <section class="each_category">
+        <header class="category_header">수입 카테고리</header>
+        <div class="category_box">
+          <div class="category_block" id="incomeCategories"></div>
+          <input
+            type="text"
+            id="newCategoryInput"
+            placeholder="새 카테고리 입력"
+          />
+        </div>
+      </section>
+      <section class="each_category">
+        <header class="category_header">지출 카테고리</header>
+        <div class="category_box">
+          <div class="category_block" id="outcomeCategories"></div>
+          <input
+            type="text"
+            id="newCategoryOutput"
+            placeholder="새 카테고리 입력"
+          />
+        </div>
+      </section>
+    </div>
     <footer class="list-add">
-        <div class="button">+</div>
+      <button class="add_list">+</button>
+      <button class="category_list">···</button>
+      <button class="return_home">H</button>
     </footer>
+    <div class="add_modal">
+      <div class="modal_header">내역 추가</div>
+
+      <button class="incomeModalButton">수입</button>
+      <button class="outcomeModalButton">지출</button>
+
+      <ul>
+        <li>종류</li>
+        <form>
+          <select class="category_option"></select>
+        </form>
+        <li>금액</li>
+        <input class="new_price" />
+        <li>내용</li>
+        <input class="new_content" />
+      </ul>
+      <button class="submitButton">저장하기</button>
+      <button class="closeModal">닫기</button>
+    </div>
     <script src="./script.js"></script>
-</body>
+  </body>
 </html>
